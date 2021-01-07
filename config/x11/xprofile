@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# the notification daemon.
+dunst &
+# Enable compositing.
+# if running, the dwm windowborder and the popup-menus in some programmes are annoyingly transparent
+# until I can be bothered to look into this, just deactivate compositor
+# picom -b &
+
+# system-wide mouse gestures, so I don't have to rely on buggy browser plugins,
+# where I have to double-rightclick to get the context menu
+easystroke --config-dir ${XDG_CONFIG_HOME}/easystroke &
+
+# UDisks front-end for automounting removable media.
+udiskie -ans &
+# music player daemon
+# (seems to get started by something else already)
+# mpd &
+
+# NetworkManager Tray Icon
+nm-applet &
+# KDE Connect
+kdeconnect-indicator &
+
+# polybar
+polybar bottom_dwm &
+polybar top_bar &
+# Launch web browser
+brave &
+# Launch editor
+code &
+# Launch music player
+cantata &
+# Launch telegram
+telegram-desktop &
+
+# start background slideshow
+{
+    while true;
+    do
+        setbg
+        sleep 600
+    done
+} &

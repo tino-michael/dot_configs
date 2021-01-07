@@ -1,0 +1,18 @@
+# Enable colors and change prompt:
+autoload -U colors && colors	# Load colors
+PS1="[%n@%M %~]$ "
+
+# Disable ctrl-s to freeze terminal.
+stty stop undef
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+compinit
+# Include hidden files.
+_comp_options+=(globdots)
+
+# History in cache directory:
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=10000000
+SAVEHIST=10000000
+[ -f "${XDG_CONFIG_HOME}/shell/aliasrc" ] && . "${XDG_CONFIG_HOME}/shell/aliasrc"

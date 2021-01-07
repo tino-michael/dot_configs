@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# add native resolution for external monitor
+xrandr --newmode "3440x1440_60.00"  419.50  3440 3696 4064 4688  1440 1443 1453 1493 -hsync +vsync
+for disp in $(xrandr | grep -e "^DP-" | head -n1 | cut -d " " -f 1)
+do
+    xrandr --addmode ${disp} 3440x1440_60.00
+done
+
+# to run on external GPU
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+xrandr --dpi 96
+
+# add scripts for controlling the display in an X session
+PATH=$PATH:/home/ichanmich/.local/bin/x_display
+
+# switch off screen blanking
+{
+    sleep 1
+    xset dpms 0 0 0
+} &
+
+# polybar needs a second to be ready and read the window title correctly
+{
+    sleep 1
+    [ -f ~/.xprofile ] && . ~/.xprofile
+} &
+
+
+session=${1:-dwm}
+
+case $session in
+    i3|i3wm           ) ssh-agent i3 ;;
+    dwm               ) ssh-agent dwm ;;
+    # No known session, try to run it as command
+    *                 ) exec $1;;
+esac

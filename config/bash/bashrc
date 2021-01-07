@@ -1,0 +1,12 @@
+#/usr/bin/env bash
+
+PS1='[\u@\h \W]\$ '
+
+[ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && . "$XDG_CONFIG_HOME/shell/aliasrc"
+
+export COMPLETE_PATH=${XDG_DATA_HOME}/complete
+export PATH="${HOME}/software/anaconda3/bin:$PATH"
+
+# tab-completions
+for file in $(\ls $COMP_PATH)
+do . $COMPLETE_PATH/$file ; done

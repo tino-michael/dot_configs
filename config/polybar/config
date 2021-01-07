@@ -1,0 +1,248 @@
+[colors]
+;background = ${xrdb:color0:#222}
+background = #222
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/base_bar]
+height = 30
+override-redirect = true
+enable-ipc = true
+
+padding = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Libertine:size=12
+font-1 = MaterialIcons:size=12
+font-2 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular:size=12
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Regular:style=Regular:size=12
+font-4 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=12
+
+
+[bar/top_bar]
+inherit = bar/base_bar
+bottom = false
+tray-position = right
+
+modules-left=window_title
+modules-center=mpd
+modules-right=pulseaudio-control backlight wlan
+
+
+[bar/bottom_bar]
+inherit = bar/base_bar
+bottom = true
+modules-right=battery date
+
+[bar/bottom_i3]
+inherit = bar/bottom_bar
+modules-left=i3
+
+[bar/bottom_dwm]
+inherit = bar/bottom_bar
+override-redirect = true
+
+width = 75%
+offset-x = 25%
+
+[module/window_title]
+type = internal/xwindow
+label-maxlen = 75
+
+
+[module/date]
+type = internal/date
+date = %%{F#999}%Y–%m–%d%%{F-} %%{F#bbb}%a%%{F-}  %%{F#fff}%H:%M:%S%%{F-}
+
+interval = 5
+
+
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground =
+toggle-off-foreground = #55
+
+bar-progress-width = 15
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #ff
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = #44
+
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <ramp> <bar>
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-font = 2
+bar-indicator-foreground = #ff
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #c9665e
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = #44
+
+
+
+
+[module/wlan]
+type = internal/network
+interface = wlo1
+interval = 3.0
+ping-interval = 10
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+label-disconnected =    not connected
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate = 500
+
+
+
+
+[module/battery]
+type = internal/battery
+
+battery = BAT0
+adapter = AC0
+
+full-at = 96
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-framerate = 2000
+
+
+
+
+[module/eth]
+type = internal/network
+interface = net0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+
+
+
+[module/volume]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+use-ui-max = true
+interval = 5
+
+format-volume = <ramp-volume> <label-volume> <bar-volume>
+;label-volume = %percentage%%
+;label-volume = ""
+label-volume-foreground = #FFF
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+
+label-muted =   muted
+label-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #999
+
+
+
+[module/pulseaudio-control]
+type = custom/script
+tail = true
+format-underline = $00ffff
+label-padding = 2
+label-foreground = ${colors.foreground}
+
+exec = polybar-pulseaudio-control
+click-right = exec pavucontrol &
+click-left = pulseaudio-control togmute
+click-middle = pulseaudio-control
+scroll-up = pulseaudio-control --volume-max 130 up
+scroll-down = pulseaudio-control --volume-max 130 down
+
+
+[global/wm]
+margin-top = 10
+margin-bottom = 5
