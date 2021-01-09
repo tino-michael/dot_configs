@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Uses dmenu to querry some input and add it to the end of a configured file.
+# Bind this to a keyboard shortcut to quickly collect thoughts and notes in a ToDo file.
+
+TODO=/home/ichanmich/Documents/Notes/_ToDo/_inbox.md
+
+new_todo=$(dmenu -i -p "Add ToDo" -l 0)
+
+[ -z $new_todo ] || echo "- [ ] $new_todo" >> $TODO
