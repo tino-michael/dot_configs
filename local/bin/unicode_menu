@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# The famous "get a menu of emojis to copy" script.
+# inspired by Luke Smith: https://github.com/LukeSmithxyz
+# but modified that it can use any file list in the configured folder
+
+SHARE=${XDG_DATA_HOME}/glyphs
+
+# if no arguments given, use all files in the folder
+for var in "${@:-*}"
+do
+    SOURCE="$SOURCE $SHARE/$var"
+done
+
+# Get user selection via dmenu from icon file.
+chosen=$(cat $SOURCE | cut -d ';' -f1 | \
+    dmenu -i -p icons -l 15 -columns 2 -font "Noto Sans 12" -width 25)
+
+# Exit if none chosen.
+[ -z "$chosen" ] && exit
+
+echo "$chosen" | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
+notify-send "'$chosen' copied to clipboard." &
