@@ -199,6 +199,7 @@
 	buffer;	f837;
 	buromobelexperte;	f37f;
 	buy-n-large;	f8a6;
+   camera; f030;
 	canadian-maple-leaf;	f785;
 	cc-amazon-pay;	f42d;
 	cc-amex;	f1f3;
@@ -250,6 +251,7 @@
 	delicious;	f1a5;
 	deploydog;	f38e;
 	deskpro;	f38f;
+	desktop;    f108;
 	dev;	f6cc;
 	deviantart;	f1bd;
 	dhl;	f790;
@@ -403,6 +405,7 @@
 	megaport;	f5a3;
 	mendeley;	f7b3;
 	microblog;	e01a;
+   microphone; f130;
 	microsoft;	f3ca;
 	mix;	f3cb;
 	mixcloud;	f289;
