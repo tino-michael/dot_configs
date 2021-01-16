@@ -32,7 +32,7 @@ tray-position = right
 
 modules-left=window_title
 modules-center=mpd
-modules-right=pulseaudio-control backlight wlan
+modules-right=pulseaudio_control backlight wlan
 
 
 [bar/bottom_bar]
@@ -228,14 +228,14 @@ bar-volume-empty-foreground = #999
 
 
 
-[module/pulseaudio-control]
+[module/pulseaudio_control]
 type = custom/script
 tail = true
 format-underline = $00ffff
 label-padding = 2
 label-foreground = ${colors.foreground}
 
-exec = polybar-pulseaudio-control
+exec = pulseaudio_control
 click-right = exec pavucontrol &
 click-left = pulseaudio-control togmute
 click-middle = pulseaudio-control
