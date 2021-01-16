@@ -48,8 +48,8 @@ modules-left=i3
 inherit = bar/bottom_bar
 override-redirect = true
 
-width = 75%
-offset-x = 25%
+width = 50%
+offset-x = 50%
 
 [module/window_title]
 type = internal/xwindow
