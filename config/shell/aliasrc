@@ -31,6 +31,9 @@ alias notebook='jupyter notebook'
 
 alias latexmk='latexmk -pvc -f -pdf -synctex=1 -interaction=batchmode'
 
+# using jhead to rename all ".jpg"s (non-case-sensitive) according to their exif timestamp
+alias photo_rename='find . -maxdepth 1 -iname "*.jpg" | xargs jhead -autorot -nf%Y-%m-%d_%H-%M-%S'
+
 # downloads a youtube video and extracts its audio stream.
 # configure in ~/.config/youtube-dl.conf
 alias yta='youtube-dl --extract-audio'
