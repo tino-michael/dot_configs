@@ -1,0 +1,8 @@
+#!/bin/sh
+
+ICON=/tmp/recordingicon
+while true
+do
+    [ -e $ICON ] && cat $ICON 
+    sleep 5
+done

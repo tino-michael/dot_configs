@@ -32,7 +32,7 @@ tray-position = right
 
 modules-left=window_title
 modules-center=mpd
-modules-right=pulseaudio_control backlight wlan
+modules-right=pulseaudio_control backlight wlan recording_icon
 
 
 [bar/bottom_bar]
@@ -241,6 +241,18 @@ click-left = pulseaudio-control togmute
 click-middle = pulseaudio-control
 scroll-up = pulseaudio-control --volume-max 130 up
 scroll-down = pulseaudio-control --volume-max 130 down
+
+
+[module/recording_icon]
+type = custom/script
+tail = true
+format-underline = $00ffff
+label-padding = 2
+label-foreground = ${colors.foreground}
+
+exec = record_icon
+click-left = dmenurecord kill
+click-right = dmenurecord
 
 
 [global/wm]
