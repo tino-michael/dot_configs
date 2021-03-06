@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# using gphoto2 to grab the raw camera footage and pipe it into ffmpeg was mainly inspired
+# by this tutorial:
+# https://www.crackedthecode.co/how-to-use-your-dslr-as-a-webcam-in-linux/
+# and in addition, some stackoverflow posts that came up during my search-engine-research.
+
+
+
+# configure the camera; not everything seems to have any effect...
+# f-number and shutterspeed though do
+gphoto2 \
+    --set-config movief-number=0 \
+    --set-config movieshutterspeed=19 \
+    --set-config moviequality="1280x720" \
+    --set-config liveviewsize="QVGA" \
+    --set-config autofocus="on"
+
+
+# start the kernel module because it doesn't seem to load automatically
+# (my user has nopasswd sudo rights for this command set in /etc/sudoers)
+sudo modprobe v4l2loopback
+
+# capture the sensor data and pipe through ffmpeg
+# run in background to start mpv and show the video right away
+{
+    gphoto2 --stdout --capture-movie |
+    ffmpeg -hide_banner \
+        -hwaccel cuda \
+        -c:v mjpeg \
+        -i - \
+        -vcodec rawvideo \
+        -pix_fmt yuv420p \
+        -threads 4 \
+        -f v4l2 \
+        /dev/video4
+} &
+
+
+# wait a second to let the background ffmpeg process kick off properly
+sleep 2
+
+# read the video stream piped by ffmpeg into /dev/video4
+mpv av://v4l2:/dev/video4 --profile=low-latency --untimed --hwdec=cuda
+
+# when done viewing, i.e. closing mpv, kill gphoto2 to stop the capturing
+pkill --signal 15 gphoto2
