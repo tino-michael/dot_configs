@@ -2,4 +2,4 @@
 
 today=$(date -I)
 
-echo $today | tr -d '\n' | xclip -selection clipboard
+printf "$today" | xclip -selection clipboard
