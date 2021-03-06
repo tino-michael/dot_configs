@@ -31,6 +31,9 @@ alias notebook='jupyter notebook'
 
 alias latexmk='latexmk -pvc -f -pdf -synctex=1 -interaction=batchmode'
 
+# use rofi as a calculator and unit converter
+alias rofi-calc='rofi -show calc -modi calc -no-show-match -no-sort'
+
 # using jhead to rename all ".jpg"s (non-case-sensitive) according to their exif timestamp
 alias photo_rename='find . -maxdepth 1 -iname "*.jpg" | xargs jhead -autorot -nf%Y-%m-%d_%H-%M-%S'
 
