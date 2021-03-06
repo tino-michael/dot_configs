@@ -13,7 +13,10 @@ udiskie -ans &
 
 # NetworkManager Tray Icon
 nm-applet &
+
 # KDE Connect
+/usr/lib/kdeconnectd &
+kdeconnect-cli -l
 kdeconnect-indicator &
 
 # polybar
