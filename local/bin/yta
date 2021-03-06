@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# downloads a youtube video and extracts its audio stream.
+# configure in ~/.config/youtube-dl.conf e.g. for download location
+
+ask_tag ()
+{
+   dmenu -i -p "enter youtube video tag"
+}
+
+# use either the CLI argument or open a dmenu and ask for the youtube video tag to download
+youtube-dl --extract-audio ${1:-$(ask_tag)}
