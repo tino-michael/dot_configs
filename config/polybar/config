@@ -231,7 +231,7 @@ bar-volume-empty-foreground = #999
 [module/pulseaudio_control]
 type = custom/script
 tail = true
-format-underline = $00ffff
+format-underline = #00ffff
 label-padding = 2
 label-foreground = ${colors.foreground}
 
