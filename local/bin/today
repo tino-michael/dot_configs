@@ -1,0 +1,5 @@
+#!/bin/bash
+
+today=$(date -I)
+
+echo $today | tr -d '\n' | xclip -selection clipboard
