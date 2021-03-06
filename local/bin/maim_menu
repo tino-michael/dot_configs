@@ -4,11 +4,11 @@
 # separate functions heavily inspired by the examples on maim github readme:
 # https://github.com/naelstrof/maim
 
-# select an area on the screen, averages the colour of the selection and 
+# select an area on the screen, averages the colour of the selection and
 # copies the rgba value into the clipboard
 colour_picker ()
 {
-    maim -st 0 | 
+    maim -st 0 |
     convert - -resize 1x1\! -format '%[pixel:p{0,0}]' info:- |
     xclip -selection clipboard
 }
@@ -36,7 +36,7 @@ select_region ()
 # opens a dmenu dialog for which mode to run
 ask()
 {
-    printf "fullscreen\\nactive window\\nselect region\\ncolour picker" | 
+    printf "fullscreen\\nactive window\\nselect region\\ncolour picker" |
     dmenu -i -p "Select screenshot style"
 }
 
