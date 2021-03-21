@@ -5,7 +5,7 @@
 
 ask_tag ()
 {
-   dmenu -i -p "enter youtube video tag"
+   dmenu -i -p "enter youtube video tag" -lines 0
 }
 
 # use either the CLI argument or open a dmenu and ask for the youtube video tag to download
