@@ -1,0 +1,11 @@
+#!/bin/sh
+
+TOKEN=" ➙ "
+
+RESULT=$(\
+    find ${PASSWORD_STORE_DIR} -type f -not -path "*/.git/*" |
+    sed -e "s/^.*store\///" -e "s/\//${TOKEN}/g" -e 's/.gpg$//' |
+    dmenu -p "Select secret file"
+)
+
+pass -c "${RESULT//${TOKEN}/\/}"
