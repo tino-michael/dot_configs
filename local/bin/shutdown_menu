@@ -1,0 +1,19 @@
+#!/bin/sh
+
+
+ask_action ()
+{
+    printf "shutdown\nreboot\nlock screen" | dmenu -i -p "action"
+}
+
+pick_action ()
+{
+    case "$@" in
+        shutdown) shutdown now ;;
+        reboot) reboot ;;
+        "lock screen") i3lock ;;
+    esac
+}
+
+pick_action ${1:-$(ask_action)}
+
