@@ -1,8 +1,22 @@
 #!/bin/sh
 
+# This script reads and displays the content of the given text file
+# it then enters an infinite loop and does nothing until it catches a SIGUSR1 signal
+# (signal code 10) and prints out the file's content again.
+# This way you can update a status display in case the content changed.
+# I run this script in polybar to display the recording mode selected by `dmenurecord`
+
 ICON=/tmp/recordingicon
-while true
-do
-    [ -e $ICON ] && cat $ICON 
-    sleep 5
+
+print_icon ()
+{
+    [ -e $ICON ] && cat $ICON
+}
+
+trap print_icon 10
+
+print_icon
+
+while true; do
+    sleep 1
 done

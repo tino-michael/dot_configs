@@ -11,10 +11,14 @@
 #
 # taken from Luke Smith: https://github.com/LukeSmithxyz
 # small modification because I don't use dwmblock
+# also made the asking and selecting of the mode nice (in my opinion...)
 
 
 updateicon() {
 	echo "$1" > /tmp/recordingicon
+	# `record_icon` is the script that runs in polybar to display the content of `recordingicon`
+	# send SIGUSR1 to re-read the file and display the new icon
+	pkill -10 record_icon
 }
 
 killrecording() {
@@ -75,7 +79,7 @@ webcam() {
 
 
 audio() {
-	ffmpeg \
+    ffmpeg \
         -f alsa -i default \
         -c:a flac \
         "$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
@@ -121,9 +125,8 @@ pickrecording ()
 		kill) killrecording;;
 		webcam) webcam;;
 		"webcam (hi-def)") webcamhidef;;
-		*) [ -f /tmp/recordingpid ] && asktoend || askrecording;;
 	esac
 }
 
-
-pickrecording "${@:-askrecording}"
+[ -f /tmp/recordingpid ] && asktoend ||
+pickrecording "${@:-$(askrecording)}"
