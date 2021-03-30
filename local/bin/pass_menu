@@ -8,5 +8,8 @@ RESULT=$(\
     dmenu -p "Select secret file"
 )
 
-[ -z "${RESULT}" ] ||
-    pass otp -c $(printf "${RESULT}" | tr "${TOKEN}" '/' | sed 's/\/\/\/\///')
+[ -z "${RESULT}" ] && exit 0
+
+case "${RESULT}" in "otp "*) OTP="otp";; esac
+
+pass ${OTP} -c $(printf "${RESULT}" | tr "${TOKEN}" '/')
