@@ -1,5 +1,16 @@
 #!/bin/sh
 
+# Querries your pass password store for password files and displays them in a dmenu
+# for selection. Copies the selection into the clipboard (using `pass -c` option).
+#
+# In contrast to the usual implementations that are floating around, this version also
+# supports generating one-time-pad (OTP) tokens for two-factor-authentications (2fa) by
+# testing if the path starts with `otp` -- which means, you have to sort your otp files
+# accordingly.
+#
+# It also replace dashes in the path name with right-arrows for the display in dmenu to
+# make the path less crammed and more visually appealing.
+
 TOKEN=" ➙ "
 
 RESULT=$(\
