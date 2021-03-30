@@ -8,4 +8,5 @@ RESULT=$(\
     dmenu -p "Select secret file"
 )
 
-pass -c "${RESULT//${TOKEN}/\/}"
+[ -z "${RESULT}" ] ||
+    pass otp -c $(printf "${RESULT}" | tr "${TOKEN}" '/' | sed 's/\/\/\/\///')
