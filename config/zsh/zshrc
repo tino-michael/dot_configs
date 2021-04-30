@@ -1,14 +1,21 @@
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
-PS1="[%n@%M %~]$ "
+PS1="[%n@%M %3~]$ "
 
 # Disable ctrl-s to freeze terminal.
 stty stop undef
 # Basic auto/tab complete:
-autoload -U compinit
+autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
-compinit
+
+# partial completion suggestions
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
+
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
 # Include hidden files.
 _comp_options+=(globdots)
 
@@ -16,4 +23,35 @@ _comp_options+=(globdots)
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000000
 SAVEHIST=10000000
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select ()
+{
+    case $KEYMAP in
+        vicmd) echo -ne '\e[1 q';;      # block
+        viins|main) echo -ne '\e[5 q';; # beam
+    esac
+}
+zle -N zle-keymap-select
+zle-line-init()
+{
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# turn CTRL+z into a toggle switch
+ctrlz()
+{
+  if [[ $#BUFFER == 0 ]]; then
+    fg >/dev/null 2>&1 && zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N ctrlz
+bindkey '^Z' ctrlz
+
 [ -f "${XDG_CONFIG_HOME}/shell/aliasrc" ] && . "${XDG_CONFIG_HOME}/shell/aliasrc"
