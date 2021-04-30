@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# This script shows you a list of keyboard shortcuts for your favourite programmes.
+# Call it without arguments and a dmenu will show so you can select your desired programme.
+# You can either run it from a terminal or trigger it with a keyboard shortcut.
+# If you run it from a terminal, the shortcut list will be printed back onto the terminal.
+# If you call it with a system shortcut, the resulting list will be piped into another dmenu
+# making the list nicely searchable.
+# You can also call it with the name of the programme you want to look up as first argument
+# and immediately get the resulting shortcut list.
+# The files with the shortcuts are looked up in `${XDG_DATA_HOME}/keys`, one file per
+# programme with the name of the programme as the name of the file.
+
+ask_keys ()
+{
+    ls "${XDG_DATA_HOME}/keys" | dmenu -i -p "Select Programme"
+}
+
+show_keys ()
+{
+    [ "$1" = "" ] && exit 0
+
+    FILE="${XDG_DATA_HOME}/keys/$1"
+
+    PPID=$(grep "^PPid" "/proc/$$/status" | cut -f 2)
+    ppid_name=$(grep "^Name" "/proc/$PPID/status" | cut -f 2)
+
+    [ "$ppid_name" = "systemd" ] \
+        && $(cat $FILE | dmenu -i -p "$1 keys") \
+        || cat $FILE
+}
+
+show_keys "${@:-$(ask_keys)}"
