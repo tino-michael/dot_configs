@@ -1,5 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 today=$(date -I)
 
-printf "$today" | xclip -selection clipboard
+[ -z "$@" ] || [ "$@" = "copy" ] &&
+    printf "$today" | xclip -selection clipboard
+
+[ -z "$@" ] || [ "$@" = "put" ] &&
+    xdotool type --clearmodifiers $today
