@@ -5,10 +5,13 @@
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | egrep -v "(x11)|(wayland)" | paste -sd ':' -)"
 
 
-export TERM="st"
-export TERMINAL="$TERM"
+export TERMINAL="st"
 export EDITOR="nvim"
 export BROWSER="brave"
+# lfrun: lf-wrapper script to enable preview of images and pdfs
+export FILE="lfrun"
+# open a new terminal and run lf in it
+export FILE_CMD="$TERMINAL -e $FILE"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
