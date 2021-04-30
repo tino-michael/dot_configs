@@ -25,6 +25,8 @@ alias vi='nvim'
 alias vim='nvim'
 alias e="$EDITOR"
 
+alias lf='lfrun'
+
 alias unlock_pacman='rm /var/lib/pacman/db.lck'
 
 alias notebook='jupyter notebook'
