@@ -1,5 +1,24 @@
 #!/bin/sh
 
+pkill_15_all ()
+{
+    # safely exit brave so it doesn't complain when restarting
+    pkill -15 brave
+    sleep 1
+}
+
+
+shutdown_safe ()
+{
+    pkill_15_all
+    shutdown now
+}
+
+reboot_safe ()
+{
+    pkill_15_all
+    reboot
+}
 
 ask_action ()
 {
@@ -9,11 +28,10 @@ ask_action ()
 pick_action ()
 {
     case "$@" in
-        shutdown) shutdown now ;;
-        reboot) reboot ;;
+        shutdown) shutdown_safe  ;;
+        reboot) reboot_safe ;;
         "lock screen") i3lock ;;
     esac
 }
 
 pick_action ${1:-$(ask_action)}
-
