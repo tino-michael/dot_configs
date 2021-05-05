@@ -19,3 +19,7 @@ $           `shell` runs command in shell
 %           `shell-pipe` runs command in shell while piping in and out
 !           `shell-wait` runs command in shell and waits for key press afterwards
 &           `shell-async` runs command in background
+
+sn          sort by name
+ss          sort by size
+st          sort by time
