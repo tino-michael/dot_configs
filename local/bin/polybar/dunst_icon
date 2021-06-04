@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+print_icon ()
+{
+    [ "$(dunstctl is-paused)" = "true" ] &&
+        echo  || echo ""
+}
+
+
+trap print_icon 10
+
+print_icon
+
+while true; do
+    sleep 1
+done

@@ -32,7 +32,7 @@ tray-position = right
 
 modules-left=window_title
 modules-center=mpd
-modules-right=pulseaudio_control backlight wlan recording_icon
+modules-right=pulseaudio_control backlight wlan recording_icon dunst_icon
 
 
 [bar/bottom_bar]
@@ -254,6 +254,16 @@ exec = record_icon
 click-left = dmenurecord kill
 click-right = dmenurecord
 
+
+[module/dunst_icon]
+type = custom/script
+tail = true
+format-underline = $00ffff
+label-padding = 1
+label-foreground = ${colors.foreground}
+
+exec = dunst_icon
+click-left = dunst_toggle
 
 [global/wm]
 margin-top = 10
