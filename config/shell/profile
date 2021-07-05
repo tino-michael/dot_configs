@@ -5,7 +5,7 @@
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | egrep -v "(x11)|(wayland)" | paste -sd ':' -)"
 
 
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export EDITOR="nvim"
 export BROWSER="brave"
 # lfrun: lf-wrapper script to enable preview of images and pdfs
