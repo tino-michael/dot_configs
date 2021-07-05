@@ -100,8 +100,6 @@
     icon_path = $XDG_DATA_HOME:$XDG_DATA_DIRS:/usr/share/icons/breeze/status/64:/usr/share/icons/breeze/devices/64/
 
     frame_width = 4
-    frame_color = "#888A85"
-
     corner_radius = 7
 
     mouse_middle_click = do_action
@@ -122,16 +120,25 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888A85"
+    # %cl0%  %clbg%
+    background = "%clbg%"
+    foreground = "%cl7%"
+    frame_color = "%cl8%"
     timeout = 4
 
 [urgency_normal]
-    background = "#222222"
-    foreground = "#eeeeec"
+    background = "%clbg%"
+    foreground = "%clfg%"
+    frame_color = "%cl8%"
     timeout = 7
 
 [urgency_critical]
-    background = "#FF0000"
-    foreground = "#eeeeec"
+    background = "%cl1%"
+    foreground = "%clfg%"
+    frame_color = "%cl9%"
     timeout = 10
+
+
+[brave]
+    appname = Brave
+    format = ""

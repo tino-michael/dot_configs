@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Update configs for applications that do not read Xresources to apply the color scheme
+# Instead of the app's usual config, append `.in` to its name and use
+# `%clfg%`, `%colbg%`, `%clX%` with X from 1 to 15 as placeholders for
+# the xresources colour names that you want to use.
+# This script sed-replaces these placeholders and saves the result as
+# the intended config file (without the `.in`-suffix).
+
+# plug together sed replacement command
+SED=sed
+
+# Numbered colors
+for i in {0..15}
+do
+    v=$(xrdb -query | awk '/*.color'"$i":'/ { print $2 }')
+    SED=${SED}" -e 's/%cl${i}%/${v}/g' "
+done
+
+# Named colors
+foreground=$(xrdb -query | awk '/*.foreground/ { print $2 }')
+background=$(xrdb -query | awk '/*.background/ { print $2 }')
+SED=${SED}" -e 's/%clfg%/${foreground}/g' "
+SED=${SED}" -e 's/%clbg%/${background}/g' "
+
+
+# rewrite templated configs of applications that do not support reading
+# xresources themselves
+for target in \
+    ${XDG_CONFIG_HOME}/alacritty/alacritty.yml \
+    ${XDG_CONFIG_HOME}/dunst/dunstrc
+do
+    SED_t="${SED} ${target}.in > ${target}"
+    eval ${SED_t}
+done
+
+unset SED
