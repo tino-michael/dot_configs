@@ -1,4 +1,5 @@
 #!/bin/sh
 
 # use rofi as a calculator and unit converter
-rofi -show calc -modi calc -no-show-match -no-sort
+rofi -show calc -modi calc -no-show-match -no-sort -lines 1 -width 25 -location 3
+
