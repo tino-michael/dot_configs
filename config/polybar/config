@@ -1,10 +1,6 @@
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -13,6 +9,8 @@ alert = #bd2c40
 height = 30
 override-redirect = true
 enable-ipc = true
+foreground = ${colors.foreground}
+background = ${colors.background}
 
 padding = 2
 module-margin-left = 1
