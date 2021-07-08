@@ -21,6 +21,8 @@ PATH=$PATH:/home/ichanmich/.local/bin/x_display
     xset dpms 0 0 0
 } &
 
+# load resources like colour schemes
+[ -f ${XRESOURCES} ] && xrdb -merge ${XRESOURCES}
 
 # autostarting user applications happens here
 [ -f ${XPROFILE} ] && . ${XPROFILE}
