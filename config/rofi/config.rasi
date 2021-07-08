@@ -1,6 +1,6 @@
 configuration {
 	modi: "combi";
-	width: 50;
+	width: 35;
 	lines: 6;
 	columns: 1;
 	eh: 2;
@@ -10,9 +10,7 @@ configuration {
 	line-margin: 0;
 	separator-style: "none";
 	hide-scrollbar: true;
-	theme: "tino";
-	color-normal: "argb:00252936, #ffffff, argb:00252936, argb:009575cd, #ff9575cd";
-	color-urgent: "argb:00252936, #ff0000, argb:00252936, argb:00252936, #ff0000";
-	color-active: "argb:00252936, #252936, argb:00252936, argb:009575cd, #ffc000";
-	color-window: "argb:cc252936,  #9575cd, argb:ffffffff";
+}
+* {
+    vertical-align: 0.5;
 }
