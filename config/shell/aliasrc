@@ -39,3 +39,6 @@ alias photo_rename='find . -maxdepth 1 -iname "*.jpg" | xargs jhead -autorot -nf
 
 # alternative pass call with alternative password-store location
 alias pass_ftb='PASSWORD_STORE_DIR=${PASSWORD_STORE_DIR}_ftb pass'
+
+# Use $XINITRC variable for startx
+alias startx="startx $XINITRC"
