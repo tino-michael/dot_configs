@@ -13,7 +13,7 @@ xrandr --auto
 xrandr --dpi 96
 
 # add scripts for controlling the display in an X session
-PATH=$PATH:/home/ichanmich/.local/bin/x_display
+PATH=$PATH:/home/ichanmich/.local/bin/x11
 
 # switch off screen blanking
 {
