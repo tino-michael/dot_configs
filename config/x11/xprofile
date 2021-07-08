@@ -21,9 +21,6 @@ nm-applet &
 kdeconnect-cli -l
 kdeconnect-indicator &
 
-# polybar
-polybar bottom_dwm &
-polybar top_bar &
 # Launch web browser
 brave &
 # Launch editor
@@ -32,6 +29,14 @@ code &
 cantata &
 # Launch telegram
 telegram-desktop &
+
+# polybar
+# needs a second to be ready and read the window title correctly
+{
+    sleep 1
+    polybar bottom_dwm &
+    polybar top_bar &
+} &
 
 # start background slideshow
 {

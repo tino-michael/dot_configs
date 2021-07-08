@@ -21,11 +21,9 @@ PATH=$PATH:/home/ichanmich/.local/bin/x_display
     xset dpms 0 0 0
 } &
 
-# polybar needs a second to be ready and read the window title correctly
-{
-    sleep 1
-    [ -f ~/.xprofile ] && . ~/.xprofile
-} &
+
+# autostarting user applications happens here
+[ -f ${XPROFILE} ] && . ${XPROFILE}
 
 
 session=${1:-dwm}
