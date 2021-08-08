@@ -1,12 +1,5 @@
 #!/bin/sh
 
-# add native resolution for external monitor
-xrandr --newmode "3440x1440_60.00"  419.50  3440 3696 4064 4688  1440 1443 1453 1493 -hsync +vsync
-for disp in $(xrandr | grep -e "^DP-" | head -n1 | cut -d " " -f 1)
-do
-    xrandr --addmode ${disp} 3440x1440_60.00
-done
-
 # to run on external GPU
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
