@@ -31,7 +31,7 @@ tray-position = right
 
 modules-left=window_title
 modules-center=mpd
-modules-right=pulseaudio_control backlight wlan recording_icon dunst_icon
+modules-right=pulseaudio_control backlight wlan recording_icon dunst_icon raven_icon
 
 
 [bar/bottom_bar]
@@ -263,6 +263,18 @@ label-foreground = ${colors.foreground}
 
 exec = dunst_icon
 click-left = dunst_toggle
+
+
+[module/raven_icon]
+type = custom/script
+tail = true
+format-underline = $00ffff
+label-padding = 1
+label-foreground = ${colors.foreground}
+
+exec = raven_icon
+click-left = toggle_ravn
+
 
 [global/wm]
 margin-top = 10
