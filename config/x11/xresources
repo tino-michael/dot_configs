@@ -40,13 +40,16 @@
 ! dwm settings
 dwm.normbgcolor:        BACKGROUND
 dwm.normfgcolor:        COLOR15
-dwm.normbordercolor:    COLOR8
+dwm.normbordercolor:    COLOR7
 dwm.selfgcolor:         FOREGROUND
-dwm.selbgcolor:         COLOR1
-dwm.selbordercolor:     COLOR9
+dwm.selbgcolor:         #8b2f45
+dwm.selbordercolor:     #dd3333
+dwm.borderpx:           4
+dwm.center_windows:     1
 
 ! rofi settings
 rofi.color-enabled: true
 rofi.color-window: COLOR0, COLOR1,     BACKGROUND
-rofi.color-normal: COLOR0, FOREGROUND, COLOR0, COLOR1,  CURSORCOLOR
-rofi.color-active: COLOR4, COLOR15,    COLOR4, COLOR15, COLOR4
+rofi.color-normal: COLOR0, FOREGROUND, COLOR0,     COLOR1,  CURSORCOLOR
+rofi.color-active: COLOR4, COLOR15,    COLOR4,     COLOR15, COLOR4
+rofi.color-urgent: #fdf6e3, COLOR3,    #eee8d5,    COLOR3,  #fdf6e3
