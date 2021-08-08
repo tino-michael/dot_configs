@@ -27,7 +27,7 @@ colors:
     white:   '%cl15%'
 
 font:
-    size: 9
+    size: 10
 
 cursor:
   style: Beam
