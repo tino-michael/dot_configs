@@ -1,6 +1,5 @@
 let mapleader =" "
 
-
 " Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
@@ -13,6 +12,9 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" File browsing panel
+Plug 'preservim/nerdtree'
 
 " syntax check
 Plug 'w0rp/ale'
@@ -122,6 +124,12 @@ noremap <silent> <Leader>cu :<C-B>silent <C-E>s/^\(\s*\)\V<C-R>=escape(b:comment
 
 " clear search string
 noremap <silent> <C-l> :let @/ = ""<CR>
+
+
+" Nerdtree
+noremap <silent> <C-b> :NERDTreeToggle<CR>
+nmap <M-e> :NERDTreeFind<CR>
+let g:NERDTreeIgnore = ['__pycache__']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
