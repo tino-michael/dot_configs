@@ -29,6 +29,9 @@ Plug 'ncm2/ncm2-jedi'
 " Formater
 Plug 'Chiel92/vim-autoformat'
 
+" VCS indicators
+Plug 'mhinz/vim-signify'
+
 " Latex plugins
 Plug 'lervag/vimtex'
 Plug 'gi1242/vim-tex-syntax'
@@ -46,6 +49,7 @@ call plug#end()
 filetype plugin indent on
 set encoding=utf-8
 syntax on
+syntax enable
 
 colorscheme tomorrow_night
 
@@ -67,6 +71,11 @@ set cursorline
 " shows line numbers
 set number relativenumber
 set nocompatible
+set hidden
+
+" highlight columns 100 and 120 as vertical ruler
+let &colorcolumn="100,120"
+highlight ColorColumn ctermbg=1
 
 " don't beep
 set visualbell
@@ -74,11 +83,25 @@ set noerrorbells
 
 " detect changes to file outside of vim and read in changes
 set autoread
+" autosave buffers on focus loss
+autocmd BufLeave,FocusLost * silent! wall
 
 
 " Search configuration
 set ignorecase                    " ignore case when searching
 set smartcase                     " turn on smartcase
+
+
+" Disables automatic commenting on newline:
+" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Enable autocomplete
+set wildmenu
+set wildmode=longest:full,full
+
+" split below and to right by default
+set splitbelow
+set splitright
 
 " vimtex Latex settings
 let g:tex_flavor  = 'latex'
@@ -130,6 +153,13 @@ noremap <silent> <C-l> :let @/ = ""<CR>
 noremap <silent> <C-b> :NERDTreeToggle<CR>
 nmap <M-e> :NERDTreeFind<CR>
 let g:NERDTreeIgnore = ['__pycache__']
+
+
+" split buffer navigation
+nnoremap <Leader>e <C-W><C-L>
+nnoremap <Leader>i <C-W><C-H>
+nnoremap <Leader>a <C-W><C-J>
+nnoremap <Leader>l <C-W><C-K>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
