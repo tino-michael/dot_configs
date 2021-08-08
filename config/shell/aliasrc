@@ -27,15 +27,23 @@ alias e="$EDITOR"
 
 alias lf='lfrun'
 
+# edit configs quickly
+alias vimrc='e ~/.config/nvim/init.vim'
+alias zshrc='e ~/.config/zsh/zshrc'
+
 alias unlock_pacman='rm /var/lib/pacman/db.lck'
 
 alias notebook='jupyter notebook'
 
 alias latexmk='latexmk -pvc -f -pdf -synctex=1 -interaction=batchmode'
 
-# using jhead to rename all ".jpg"s (non-case-sensitive) according to their exif timestamp
-alias photo_rename='find . -maxdepth 1 -iname "*.jpg" | xargs jhead -autorot -nf%Y-%m-%d_%H-%M-%S'
-
+lower_case ()
+{
+  find . -name '*.*' -exec sh -c '
+  a=$(echo "$0" | sed -r "s/([^.]*)\$/\L\1/");
+  [ "$a" != "$0" ] && mv "$0" "$a" ' {} \;
+}
+alias photo_rename='exiftool -ext jpg -ext jpeg -ext nef -d %Y-%m-%d_%H-%M-%S%%-c.%%e "-filename<CreateDate" "-filename<datetimeoriginal" * && lower_case'
 
 # alternative pass call with alternative password-store location
 alias pass_ftb='PASSWORD_STORE_DIR=${PASSWORD_STORE_DIR}_ftb pass'
