@@ -55,6 +55,12 @@ syntax enable
 
 colorscheme tomorrow_night
 
+" spell-checking certain file types (turn on locally with `:setlocal spell`)
+autocmd BufRead,BufNewFile *.md,*tex,*txt setlocal spell
+set spelllang=en_us,de_de,en_uk,fr_fr
+set complete+=kspell
+map <F4> :setlocal spell!<CR>
+
 " show existing tab with 4 spaces width
 set tabstop=4
 " number of spaces to use for auto indent
