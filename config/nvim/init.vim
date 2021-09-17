@@ -142,6 +142,7 @@ augroup END
 " toggle comments
 augroup commenting_blocks_of_code
     autocmd!
+    let b:comment_leader = '// '
     autocmd FileType c,cpp,java,scala      let b:comment_leader = '// '
     autocmd FileType sh,ruby,python,perl   let b:comment_leader = '# '
     autocmd FileType conf,fstab            let b:comment_leader = '# '
