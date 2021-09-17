@@ -41,6 +41,8 @@ Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html,text'
 Plug 'shmargum/vim-sass-colors'
 
+" csv helper
+Plug 'chrisbra/csv.vim'
 " Initialize plugin system
 call plug#end()
 
@@ -165,6 +167,19 @@ nnoremap <Leader>e <C-W><C-L>
 nnoremap <Leader>i <C-W><C-H>
 nnoremap <Leader>a <C-W><C-J>
 nnoremap <Leader>l <C-W><C-K>
+
+
+
+" auto arranges option wheel csv files
+aug CSV_Editing
+	au!
+	au BufRead,BufWritePost */wheel/*.csv :%ArrangeColumn
+	au BufWritePre */wheel/*.csv :%UnArrangeColumn
+aug end
+
+let b:csv_arrange_align = 'lrr.r'
+
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
