@@ -151,8 +151,13 @@ noremap <silent> <C-l> :let @/ = ""<CR>
 
 " Nerdtree
 noremap <silent> <C-b> :NERDTreeToggle<CR>
-nmap <M-e> :NERDTreeFind<CR>
+noremap <silent> <leader>b :NERDTreeFocus<CR>
+map <M-e> :NERDTreeFind<CR>
 let g:NERDTreeIgnore = ['__pycache__']
+" Exit vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Close tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 
 " split buffer navigation
