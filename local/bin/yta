@@ -9,4 +9,17 @@ ask_tag ()
 }
 
 # use either the CLI argument or open a dmenu and ask for the youtube video tag to download
-youtube-dl --extract-audio ${1:-$(ask_tag)}
+TAG=${1:-$(ask_tag)}
+
+FN=$(youtube-dl --extract-audio --get-filename $TAG)
+BN=$(basename "$FN")
+
+# check if the file is already in the download directory -- if not, download
+# send system notifications accordingly
+[ -e "$FN" ] &&
+    notify-send youtube-dl "$BN already exists in download dir" ||
+    {
+        youtube-dl --extract-audio $TAG &&
+        [ -e "$FN" ] && notify-send youtube-dl "$BN downloaded"
+    }
+
