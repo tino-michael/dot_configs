@@ -15,6 +15,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 " File browsing panel
 Plug 'preservim/nerdtree'
+" file finder
+Plug 'ctrlpvim/ctrlp.vim'
 
 " syntax check
 Plug 'w0rp/ale'
@@ -59,7 +61,7 @@ colorscheme tomorrow_night
 autocmd BufRead,BufNewFile *.md,*tex,*txt setlocal spell
 set spelllang=en_us,de_de,en_uk,fr_fr
 set complete+=kspell
-map <F4> :setlocal spell!<CR>
+map <leader>s :setlocal spell!<CR>
 
 " show existing tab with 4 spaces width
 set tabstop=4
@@ -117,6 +119,24 @@ let g:tex_conceal = ''
 let g:vimtex_fold_manual = 1
 let g:vimtex_latexmk_continuous = 1
 let g:vimtex_compiler_progname = 'nvr'
+
+" fuzzy file finding with CtrlP and ripgrep
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" set starting directory to
+" (r) the nearest ancestor of the current file that contains one of these directories or files: .git .hg .svn .bzr _darcs
+" (a) the directory of the current file, unless it is a subdirectory of the cwd
+let g:ctrlp_working_path_mode = 'ra'
+" additional root directory markers
+let g:ctrlp_root_markers = ['.tasks']
+" use rg as file search command
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+else
+  let g:ctrlp_clear_cache_on_exit = 0
+endif
 
 
 augroup NCM2
@@ -186,7 +206,9 @@ aug end
 
 let b:csv_arrange_align = 'lrr.r'
 
-
+" auto delete trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,5 +226,9 @@ augroup config_updates
     " Update mpd when config is updated.
     autocmd BufWritePost *mpd.conf !pkill -15 mpd && mpd
 
-    autocmd BufWritePost */alacritty.yml.in !generate_xresource_configs
+    autocmd BufWritePost */alacritty.yml.in,*/dunstrc.in !generate_xresource_configs
+
+    " reread xresources when config is updated
+    autocmd BufWritePost xresources !xrdb %
+
 augroup END
