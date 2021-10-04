@@ -1,16 +1,8 @@
 configuration {
 	modi: "combi";
-	width: 35;
-	lines: 6;
-	columns: 1;
+    theme: "theme";
 	eh: 2;
 	font: "Noto Sans 15";
 	show-icons: true;
 	combi-modi: "drun,run,window";
-	line-margin: 0;
-	separator-style: "none";
-	hide-scrollbar: true;
-}
-* {
-    vertical-align: 0.5;
 }
