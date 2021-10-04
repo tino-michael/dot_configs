@@ -22,7 +22,8 @@ reboot_safe ()
 
 ask_action ()
 {
-    printf "shutdown\nreboot\nlock screen" | dmenu -i -p "action"
+    printf "shutdown\nreboot\nlock screen" |
+        dmenu -i -p "action" -theme-str '#window {width: 250px;} #listview {lines: 3;}'
 }
 
 pick_action ()
