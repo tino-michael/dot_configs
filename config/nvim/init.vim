@@ -58,8 +58,8 @@ syntax enable
 colorscheme tomorrow_night
 
 " spell-checking certain file types (turn on locally with `:setlocal spell`)
-autocmd BufRead,BufNewFile *.md,*tex,*txt setlocal spell
-set spelllang=en_us,de_de,en_uk,fr_fr
+autocmd BufRead,BufNewFile *.md,*.tex,*.txt setlocal spell
+set spelllang=en_us,de_de,en_gb,fr
 set complete+=kspell
 map <leader>s :setlocal spell!<CR>
 
@@ -121,7 +121,7 @@ let g:vimtex_latexmk_continuous = 1
 let g:vimtex_compiler_progname = 'nvr'
 
 " fuzzy file finding with CtrlP and ripgrep
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 " set starting directory to
 " (r) the nearest ancestor of the current file that contains one of these directories or files: .git .hg .svn .bzr _darcs
@@ -162,13 +162,14 @@ augroup END
 " toggle comments
 augroup commenting_blocks_of_code
     autocmd!
-    let b:comment_leader = '// '
+    let b:comment_leader = '# '
     autocmd FileType c,cpp,java,scala      let b:comment_leader = '// '
     autocmd FileType sh,ruby,python,perl   let b:comment_leader = '# '
     autocmd FileType conf,fstab            let b:comment_leader = '# '
     autocmd FileType tex                   let b:comment_leader = '% '
     autocmd FileType mail                  let b:comment_leader = '> '
     autocmd FileType vim                   let b:comment_leader = '" '
+    autocmd BufRead *.conf,*.rasi          let b:comment_leader = '# '
 augroup END
 noremap <silent> <Leader>cc :<C-B>silent <C-E>s/^\(\s*\)/\1<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <Leader>cu :<C-B>silent <C-E>s/^\(\s*\)\V<C-R>=escape(b:comment_leader,'\/')<CR>/\1/e<CR>:nohlsearch<CR>
@@ -177,16 +178,23 @@ noremap <silent> <Leader>cu :<C-B>silent <C-E>s/^\(\s*\)\V<C-R>=escape(b:comment
 " clear search string
 noremap <silent> <C-l> :let @/ = ""<CR>
 
+" yank to and paste from system clipboard
+nnoremap <leader>y <S-v> "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
 
 " Nerdtree
-noremap <silent> <C-b> :NERDTreeToggle<CR>
-noremap <silent> <leader>b :NERDTreeFocus<CR>
-map <M-e> :NERDTreeFind<CR>
+" toggles Nerdtree open/closed
+noremap <silent> <leader>b :NERDTreeToggle<CR>
+" finds the current file in Nerdtree (puts cursor over it); opens Nerdtree if necessary
+noremap <M-b> :NERDTreeFind<CR>
 let g:NERDTreeIgnore = ['__pycache__']
 " Exit vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Close tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" show bookmars on startup
+let NERDTreeShowBookmarks=1
 
 
 " split buffer navigation
