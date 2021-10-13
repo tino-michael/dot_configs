@@ -137,8 +137,3 @@
     foreground = "%clfg%"
     frame_color = "%cl9%"
     timeout = 10
-
-
-[brave]
-    appname = Brave
-    format = ""
