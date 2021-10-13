@@ -28,7 +28,8 @@ code &
 # Launch music player
 cantata &
 # Launch telegram
-telegram-desktop &
+# needs a second to show systray icon
+{ sleep 1; telegram-desktop & } &
 
 # polybar
 # needs a second to be ready and read the window title correctly
