@@ -23,8 +23,6 @@ kdeconnect-indicator &
 
 # Launch web browser
 brave &
-# Launch editor
-code &
 # Launch music player
 cantata &
 # Launch telegram
