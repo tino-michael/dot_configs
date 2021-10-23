@@ -8,10 +8,10 @@ picom -b
 # UDisks front-end for automounting removable media.
 udiskie -ans &
 # music player daemon
-mpd &
+mpd
 
 # unclutter hides the mouse curser after timeout
-unclutter --timeout 5 --ignore-scrolling &
+unclutter --timeout 7 --ignore-scrolling -b
 
 # NetworkManager Tray Icon
 nm-applet &
