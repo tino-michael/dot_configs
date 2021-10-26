@@ -25,8 +25,6 @@ show_keys ()
     PPID=$(grep "^PPid" "/proc/$$/status" | cut -f 2)
     ppid_name=$(grep "^Name" "/proc/$PPID/status" | cut -f 2)
 
-    notify-send $PPID $ppid_name
-
     # if the parent's name is a shell, i.e. ends in "sh" (sh, zsh, dash, bash, fish ...),
     # simply paste the file content; otherwise pipe it into a `dmenu`
     case "$ppid_name" in
