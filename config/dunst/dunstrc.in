@@ -39,7 +39,7 @@
     # geometry
     origin = top-right
     width = 450
-    height = 300
+    height = 350
     offset = 5x35
 
     # Shrink window if it's smaller than the width.
@@ -95,8 +95,8 @@
     # Align icons left/right/off
     icon_position = right
 
-    min_icon_size = 0
-    max_icon_size = 32
+    min_icon_size = 128
+    max_icon_size = 128
 
     # Paths to default icons.
     icon_path = $XDG_DATA_HOME:$XDG_DATA_DIRS:/usr/share/icons/breeze/status/64:/usr/share/icons/breeze/devices/64/
@@ -105,19 +105,6 @@
     corner_radius = 7
 
     mouse_middle_click = do_action
-
-[shortcuts]
-    # Close notification.
-    close = ctrl+space
-
-    # Close all notifications.
-    close_all = ctrl+shift+space
-
-    # Redisplay last message(s).
-    history = ctrl+mod1+space
-
-    # Context menu.
-    context = ctrl+shift+period
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
