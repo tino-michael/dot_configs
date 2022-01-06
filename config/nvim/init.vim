@@ -13,7 +13,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-# color scheme
+" color scheme
 Plug 'dracula/vim', { 'as': 'dracula' }
 " File browsing panel
 Plug 'preservim/nerdtree'
