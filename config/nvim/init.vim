@@ -13,8 +13,16 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+# color scheme
+Plug 'dracula/vim', { 'as': 'dracula' }
 " File browsing panel
 Plug 'preservim/nerdtree'
+" comment toggler
+Plug 'preservim/nerdcommenter'
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 " file finder
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -22,15 +30,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'w0rp/ale'
 
 " Autocomplete
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-jedi'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Formater
 Plug 'Chiel92/vim-autoformat'
 
+" Insert or delete brackets, parens, quotes in pair.
+Plug 'jiangmiao/auto-pairs'
 " VCS indicators
 Plug 'mhinz/vim-signify'
 
@@ -38,6 +44,14 @@ Plug 'mhinz/vim-signify'
 Plug 'lervag/vimtex'
 Plug 'gi1242/vim-tex-syntax'
 
+" Markdown plugins
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_new_list_item_indent = 2
+" sass css syntax
+Plug 'cakebaker/scss-syntax.vim'
 " highlight colour names and variables
 Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html,text'
@@ -55,7 +69,7 @@ set encoding=utf-8
 syntax on
 syntax enable
 
-colorscheme tomorrow_night
+colorscheme dracula
 
 " spell-checking certain file types (turn on locally with `:setlocal spell`)
 autocmd BufRead,BufNewFile *.md,*.tex,*.txt setlocal spell
@@ -65,9 +79,9 @@ map <leader>s :setlocal spell!<CR>
 
 " show existing tab with 4 spaces width
 set tabstop=4
-" number of spaces to use for auto indent
+" number of spaces to use for indent
 set shiftwidth=4
-" On pressing tab, insert 4 spaces
+" pressing tab inserts spaces
 set expandtab
 
 " copy indent from current line when starting a new line
@@ -113,12 +127,14 @@ set wildmode=longest:full,full
 set splitbelow
 set splitright
 
+" equalise widths and heights of all panes
+nnoremap <leader>f <C-W>=
 " vimtex Latex settings
 let g:tex_flavor  = 'latex'
 let g:tex_conceal = ''
 let g:vimtex_fold_manual = 1
-let g:vimtex_latexmk_continuous = 1
 let g:vimtex_compiler_progname = 'nvr'
+noremap <A-l> :VimtexCompile<CR>
 
 " fuzzy file finding with CtrlP and ripgrep
 let g:ctrlp_map = '<leader>p'
@@ -139,49 +155,14 @@ else
 endif
 
 
-augroup NCM2
-  autocmd!
-
-  " enable ncm2 for all buffers
-  autocmd BufEnter * call ncm2#enable_for_buffer()
-  " :help Ncm2PopupOpen for more information
-  set completeopt=noinsert,menuone,noselect
-
-  autocmd Filetype tex call ncm2#register_source({
-            \ 'name': 'vimtex',
-            \ 'priority': 8,
-            \ 'scope': ['tex'],
-            \ 'mark': 'tex',
-            \ 'word_pattern': '\w+',
-            \ 'complete_pattern': g:vimtex#re#ncm2,
-            \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
-            \ })
-augroup END
-
-
-" toggle comments
-augroup commenting_blocks_of_code
-    autocmd!
-    let b:comment_leader = '# '
-    autocmd FileType c,cpp,java,scala      let b:comment_leader = '// '
-    autocmd FileType sh,ruby,python,perl   let b:comment_leader = '# '
-    autocmd FileType conf,fstab            let b:comment_leader = '# '
-    autocmd FileType tex                   let b:comment_leader = '% '
-    autocmd FileType mail                  let b:comment_leader = '> '
-    autocmd FileType vim                   let b:comment_leader = '" '
-    autocmd BufRead *.conf,*.rasi          let b:comment_leader = '# '
-augroup END
-noremap <silent> <Leader>cc :<C-B>silent <C-E>s/^\(\s*\)/\1<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> <Leader>cu :<C-B>silent <C-E>s/^\(\s*\)\V<C-R>=escape(b:comment_leader,'\/')<CR>/\1/e<CR>:nohlsearch<CR>
-
-
 " clear search string
 noremap <silent> <C-l> :let @/ = ""<CR>
 
 " yank to and paste from system clipboard
-nnoremap <leader>y <S-v> "+y
-vnoremap <leader>y "+y
-nnoremap <leader>p "+p
+nnoremap <C-y> <S-v> "+y
+vnoremap <C-y> "+y
+nnoremap <C-p> "+p
+inoremap <C-p> <esc> "+P i
 
 " Nerdtree
 " toggles Nerdtree open/closed
@@ -203,6 +184,13 @@ nnoremap <Leader>i <C-W><C-H>
 nnoremap <Leader>a <C-W><C-J>
 nnoremap <Leader>l <C-W><C-K>
 
+" move lines up / down
+nnoremap <S-A-r> :m .+1<CR>==
+nnoremap <S-A-n> :m .-2<CR>==
+inoremap <S-A-r> <Esc>:m .+1<CR>==gi
+inoremap <S-A-n> <Esc>:m .-2<CR>==gi
+vnoremap <S-A-r> :m '>+1<CR>gv=gv
+vnoremap <S-A-n> :m '<-2<CR>gv=gv
 
 
 " auto arranges option wheel csv files
@@ -215,8 +203,10 @@ aug end
 let b:csv_arrange_align = 'lrr.r'
 
 " auto delete trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * let currPos = getpos(".")
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
