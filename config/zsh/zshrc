@@ -75,3 +75,8 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 [ -f "${XDG_CONFIG_HOME}/shell/aliasrc" ] && . "${XDG_CONFIG_HOME}/shell/aliasrc"
+
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/ichanmich/software/miniconda3/etc/profile.d/conda.sh
+conda activate py310
