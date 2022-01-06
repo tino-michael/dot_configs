@@ -7,7 +7,6 @@ stty stop undef
 # Basic auto/tab complete:
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
-zstyle ':completion:*' special-dirs true
 
 # partial completion suggestions
 zstyle ':completion:*' list-suffixes
