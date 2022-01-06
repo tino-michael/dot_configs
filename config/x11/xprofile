@@ -13,21 +13,14 @@ mpd
 # unclutter hides the mouse curser after timeout
 unclutter --timeout 7 --ignore-scrolling -b
 
-# NetworkManager Tray Icon
-nm-applet &
-
-# KDE Connect
-/usr/lib/kdeconnectd &
-kdeconnect-cli -l
-kdeconnect-indicator &
-
 # Launch web browser
-brave &
+${BROWSER} &
+
 # Launch music player
 cantata &
-# Launch telegram
-# needs a second to show systray icon
-{ sleep 1; telegram-desktop & } &
+
+# NetworkManager Tray Icon
+nm-applet &
 
 # polybar
 # needs a second to be ready and read the window title correctly
@@ -35,6 +28,21 @@ cantata &
     sleep 1
     polybar bottom_dwm &
     polybar top_bar &
+} &
+
+# Launch telegram
+# needs a second to show systray icon
+{
+    sleep 3
+    telegram-desktop &
+} &
+
+# KDE Connect
+{
+    sleep 5
+    /usr/lib/kdeconnectd &
+    kdeconnect-cli -l
+    kdeconnect-indicator &
 } &
 
 # start background slideshow
