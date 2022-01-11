@@ -14,8 +14,7 @@
 TOKEN=" ➙ "
 
 RESULT=$(\
-    find ${PASSWORD_STORE_DIR} -type f -o -type l |
-    grep -v '\.git' |
+    ls ${PASSWORD_STORE_DIR}/**/*.gpg | \
     sed -e "s/^.*store\///" -e "s/\//${TOKEN}/g" -e 's/.gpg$//' |
     dmenu -i -p "Select secret file"
 )
