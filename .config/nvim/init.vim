@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', { 'as': 'dracula' }
 " File browsing panel
 Plug 'preservim/nerdtree'
+Plug 'com:Xuyuanp/nerdtree-git-plugin'
 " comment toggler
 Plug 'preservim/nerdcommenter'
 " Create default mappings
@@ -178,12 +179,30 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 let NERDTreeShowBookmarks=1
 
 
+" indent with tab in normal mode
+nnoremap <tab> >>
+nnoremap <s-tab> <<
 " split buffer navigation
 nnoremap <Leader>e <C-W><C-L>
 nnoremap <Leader>i <C-W><C-H>
 nnoremap <Leader>a <C-W><C-J>
 nnoremap <Leader>l <C-W><C-K>
 
+" go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+" go to last active tab
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> <leader>t :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <leader>t :exe "tabn ".g:lasttab<cr>
 " move lines up / down
 nnoremap <S-A-r> :m .+1<CR>==
 nnoremap <S-A-n> :m .-2<CR>==
@@ -191,7 +210,6 @@ inoremap <S-A-r> <Esc>:m .+1<CR>==gi
 inoremap <S-A-n> <Esc>:m .-2<CR>==gi
 vnoremap <S-A-r> :m '>+1<CR>gv=gv
 vnoremap <S-A-n> :m '<-2<CR>gv=gv
-
 
 " auto arranges option wheel csv files
 aug CSV_Editing
