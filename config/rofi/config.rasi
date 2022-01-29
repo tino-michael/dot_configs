@@ -1,8 +1,9 @@
 configuration {
 	modi: "combi";
-    theme: "theme";
 	eh: 2;
 	font: "Noto Sans 15";
 	show-icons: true;
 	combi-modi: "drun,run,window";
 }
+
+@theme "theme"
