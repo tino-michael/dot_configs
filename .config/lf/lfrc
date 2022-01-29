@@ -1,5 +1,5 @@
-set previewer ~/.local/bin/lf/preview
-set cleaner ~/.local/bin/lf/cleaner
+set previewer ~/.local/bin/lfimg/preview
+set cleaner ~/.local/bin/lfimg/cleaner
 set shell zsh
 set shellopts '-euy'
 set ifs "\n"

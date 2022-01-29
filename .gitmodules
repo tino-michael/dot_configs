@@ -1,0 +1,3 @@
+[submodule "lfimg"]
+	path = .local/bin/lfimg
+	url = git@github.com:cirala/lfimg.git
