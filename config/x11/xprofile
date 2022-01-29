@@ -38,11 +38,13 @@ nm-applet &
 } &
 
 # KDE Connect
+/usr/lib/kdeconnectd &
+kdeconnect-indicator &
 {
     sleep 5
-    /usr/lib/kdeconnectd &
+    # still doesn't reliably recognise phone sometimes
+    kdeconnect-cli --refresh
     kdeconnect-cli -l
-    kdeconnect-indicator &
 } &
 
 # start background slideshow
