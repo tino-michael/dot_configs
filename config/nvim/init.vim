@@ -208,6 +208,9 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
+" clear latex auxiliary files when leaving a .tex file
+autocmd VimLeave *.tex !texclear %
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
