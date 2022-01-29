@@ -38,6 +38,11 @@ alias lutris='conda deactivate && \lutris'
 alias vimrc='e ~/.config/nvim/init.vim'
 alias zshrc='e ~/.config/zsh/zshrc'
 alias aliasrc='e ~/.config/shell/aliasrc'
+alias autostart='e ~/.config/x11/xprofile'
+
+# organise configs in home git repo
+alias home='/usr/bin/git --git-dir=$HOME/.local/repos/dot_configs --work-tree=$HOME'
+alias homeui='gitui -d $HOME/.local/repos/dot_configs -w $HOME'
 
 alias unlock_pacman='rm /var/lib/pacman/db.lck'
 
