@@ -21,6 +21,7 @@ RESULT=$(\
 
 [ -z "${RESULT}" ] && exit 0
 
+# if the path of the selected entry starts with "otp ", use `pass`'s One-Time-Pad mode
 case "${RESULT}" in "otp "*) OTP="otp";; esac
 
 pass ${OTP} -c $(printf "${RESULT}" | tr "${TOKEN}" '/')
