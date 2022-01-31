@@ -43,6 +43,8 @@ alias autostart='e ~/.config/x11/xprofile'
 # organise configs in home git repo
 alias home='/usr/bin/git --git-dir=$HOME/.local/repos/dot_configs --work-tree=$HOME'
 alias homeui='gitui -d $HOME/.local/repos/dot_configs -w $HOME'
+alias h='home'
+alias hui='homeui'
 
 alias unlock_pacman='rm /var/lib/pacman/db.lck'
 
