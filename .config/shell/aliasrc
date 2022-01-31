@@ -36,7 +36,7 @@ alias lutris='conda deactivate && \lutris'
 
 # edit configs quickly
 alias vimrc='e ~/.config/nvim/init.vim'
-alias zshrc='e ~/.config/zsh/zshrc'
+alias zshrc='e ~/.config/zsh/.zshrc'
 alias aliasrc='e ~/.config/shell/aliasrc'
 alias autostart='e ~/.config/x11/xprofile'
 
