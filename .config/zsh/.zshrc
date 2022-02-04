@@ -127,7 +127,7 @@ fi
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /home/ichanmich/software/miniconda3/etc/profile.d/conda.sh
-conda activate py310
+conda activate py39
 
 # Window title
 case $TERM in
