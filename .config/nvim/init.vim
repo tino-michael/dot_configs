@@ -17,7 +17,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', { 'as': 'dracula' }
 " File browsing panel
 Plug 'preservim/nerdtree'
-Plug 'com:Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+
 " comment toggler
 Plug 'preservim/nerdcommenter'
 " Create default mappings
