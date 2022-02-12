@@ -245,7 +245,7 @@ scroll-down = pulseaudio-control --volume-max 130 down
 [module/recording_icon]
 type = custom/script
 tail = true
-format-underline = $00ffff
+format-underline = #00ffff
 label-padding = 2
 label-foreground = ${colors.foreground}
 
@@ -257,7 +257,7 @@ click-right = dmenurecord
 [module/dunst_icon]
 type = custom/script
 tail = true
-format-underline = $00ffff
+format-underline = #00ffff
 label-padding = 1
 label-foreground = ${colors.foreground}
 
@@ -268,7 +268,7 @@ click-left = dunst_toggle
 [module/raven_icon]
 type = custom/script
 tail = true
-format-underline = $00ffff
+format-underline = #00ffff
 label-padding = 1
 label-foreground = ${colors.foreground}
 
