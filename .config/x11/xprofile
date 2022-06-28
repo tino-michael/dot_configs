@@ -13,27 +13,33 @@ mpd
 # unclutter hides the mouse curser after timeout
 unclutter --timeout 7 --ignore-scrolling -b
 
-# Launch web browser
-${BROWSER} &
+{
+    sleep 1
+    # Launch web browser
+    ${BROWSER} &
 
-# Launch music player
-cantata &
-
-# NetworkManager Tray Icon
-nm-applet &
+    # Launch music player
+    cantata &
+} &
 
 # polybar
 # needs a second to be ready and read the window title correctly
 {
-    sleep 1
     polybar bottom_dwm &
+    sleep 1
     polybar top_bar &
+} &
+
+# NetworkManager Tray Icon
+{
+    sleep 2
+    nm-applet &
 } &
 
 # Launch telegram
 # needs a second to show systray icon
 {
-    sleep 3
+    sleep 2
     telegram-desktop &
 } &
 
