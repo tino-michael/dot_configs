@@ -57,8 +57,7 @@ let g:vim_markdown_new_list_item_indent = 2
 Plug 'cakebaker/scss-syntax.vim'
 " highlight colour names and variables
 Plug 'chrisbra/Colorizer'
-let g:colorizer_auto_filetype='css,html,text'
-Plug 'shmargum/vim-sass-colors'
+let g:colorizer_auto_filetype='css,sass,scss,html,text'
 
 " csv helper
 Plug 'chrisbra/csv.vim'
@@ -94,6 +93,14 @@ set autoindent
 set title
 " Highlight the line under the cursor
 set cursorline
+
+" wrap line on word boundaries
+set linebreak
+
+" enable folding
+set foldmethod=indent
+set foldlevel=99
+nmap <c-f> za
 
 " shows line numbers
 set number relativenumber
@@ -132,6 +139,14 @@ set splitright
 
 " equalise widths and heights of all panes
 nnoremap <leader>f <C-W>=
+
+" testing rounded separators (extra-powerline-symbols):
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+
+" set the CN (column number) symbol:
+let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+
 " vimtex Latex settings
 let g:tex_flavor  = 'latex'
 let g:tex_conceal = ''
@@ -172,7 +187,7 @@ inoremap <C-p> <esc> "+P i
 noremap <silent> <leader>b :NERDTreeToggle<CR>
 " finds the current file in Nerdtree (puts cursor over it); opens Nerdtree if necessary
 noremap <M-b> :NERDTreeFind<CR>
-let g:NERDTreeIgnore = ['__pycache__']
+let g:NERDTreeIgnore = ['__pycache__', '\.egg-info']
 " Exit vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Close tab if NERDTree is the only window remaining in it.
@@ -184,6 +199,7 @@ let NERDTreeShowBookmarks=1
 " indent with tab in normal mode
 nnoremap <tab> >>
 nnoremap <s-tab> <<
+
 " split buffer navigation
 nnoremap <Leader>e <C-W><C-L>
 nnoremap <Leader>i <C-W><C-H>
@@ -201,10 +217,15 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
+
 " go to last active tab
 au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <silent> <leader>t :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> <leader>t :exe "tabn ".g:lasttab<cr>
+
+" go to last active buffer
+nnoremap <c-x> :bprevious<CR>
+
 " move lines up / down
 nnoremap <S-A-r> :m .+1<CR>==
 nnoremap <S-A-n> :m .-2<CR>==
@@ -213,14 +234,17 @@ inoremap <S-A-n> <Esc>:m .-2<CR>==gi
 vnoremap <S-A-r> :m '>+1<CR>gv=gv
 vnoremap <S-A-n> :m '<-2<CR>gv=gv
 
-" auto arranges option wheel csv files
+" auto arranges specific csv files
 aug CSV_Editing
-	au!
-	au BufRead,BufWritePost */wheel/*.csv :%ArrangeColumn
-	au BufWritePre */wheel/*.csv :%UnArrangeColumn
-aug end
+    au!
 
-let b:csv_arrange_align = 'lrr.r'
+    let b:csv_arrange_align = 'lrr.r'
+
+    au BufRead,BufWritePost */wheel/*.csv :%ArrangeColumn
+    au BufWritePre */wheel/*.csv :%UnArrangeColumn
+    au BufRead,BufWritePost */dividends/*.csv,*.csv :%ArrangeColumn
+    au BufWritePre */dividends/*.csv,*.csv :%UnArrangeColumn
+aug end
 
 " auto delete trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * let currPos = getpos(".")
