@@ -32,7 +32,6 @@ alias lf='lfrun'
 
 # things that don't play well with conda's virtual environment
 alias yay='conda deactivate && \yay'
-alias lutris='conda deactivate && \lutris'
 
 # edit configs quickly
 alias vimrc='e ~/.config/nvim/init.vim'
