@@ -126,8 +126,16 @@ fi
 
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/ichanmich/software/miniconda3/etc/profile.d/conda.sh
-conda activate py39
+
+# do NOT source conda and activate conda env when X is not yet running
+# only do so, when starting new graphical terminal (i.e. X is running)
+# this prevents polluting e.g. rofi with conda python packages,
+# not using system ones and failing on version missmatch
+if [[ $(xset -q 2&> /dev/null ) ]]
+then
+    source /home/ichanmich/software/miniconda3/etc/profile.d/conda.sh
+    conda activate py310
+fi
 
 # Window title
 case $TERM in
