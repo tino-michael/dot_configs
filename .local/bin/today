@@ -6,4 +6,4 @@ today=$(date -I)
     printf "$today" | xclip -selection clipboard
 
 [ -z "$@" ] || [ "$@" = "put" ] &&
-    xdotool type --clearmodifiers $today
+    xdotool type --clearmodifiers $today &
