@@ -53,6 +53,11 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_new_list_item_indent = 2
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" refresh markdown when save buffer or leave insert mode
+let g:mkdp_refresh_slow = 0
+
 " sass css syntax
 Plug 'cakebaker/scss-syntax.vim'
 " highlight colour names and variables
@@ -127,7 +132,7 @@ set smartcase                     " turn on smartcase
 
 
 " Disables automatic commenting on newline:
-" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Enable autocomplete
 set wildmenu
@@ -224,7 +229,7 @@ nnoremap <silent> <leader>t :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> <leader>t :exe "tabn ".g:lasttab<cr>
 
 " go to last active buffer
-nnoremap <c-x> :bprevious<CR>
+nnoremap <c-x> <c-6>
 
 " move lines up / down
 nnoremap <S-A-r> :m .+1<CR>==
