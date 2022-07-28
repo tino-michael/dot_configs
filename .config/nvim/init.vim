@@ -85,7 +85,7 @@ syntax enable
 
 colorscheme dracula
 
-" spell-checking certain file types (turn on locally with `:setlocal spell`)
+" spell-checking certain file types (toggle locally with leader-s)
 autocmd BufRead,BufNewFile *.md,*.tex,*.txt setlocal spell
 set spelllang=en_us,de_de,en_gb,fr
 set complete+=kspell
