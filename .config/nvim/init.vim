@@ -32,6 +32,19 @@ Plug 'w0rp/ale'
 
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" python autocomlete (might conflict with coc?)
+Plug 'davidhalter/jedi-vim'
+
+let g:jedi#show_call_signatures = "0"
+let g:jedi#goto_command = "<leader>gt"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#goto_stubs_command = ""
+" let g:jedi#use_splits_not_buffers =
+" right"
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#completions_enabled = 0
+
+
 
 " Formater
 Plug 'Chiel92/vim-autoformat'
