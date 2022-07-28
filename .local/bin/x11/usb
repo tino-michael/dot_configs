@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+int_name=$(xrandr | grep -e ^eDP.*\ connected | head -n1 | cut -d " " -f 1)
+
+if [[ -z "$(xrandr | grep $int_name)" ]]
+then
+    echo "internal display '$int_name' not found"
+    echo "running on external GPU?"
+    exit -1
+fi
+
+
+# Two USB-C connectors provide two display output. If `left` or `right` is given, pick accordingly.
+# Otherwise, automatically pick any connected one
+if [[ "$@" =~ "left" ]]
+then
+    ext_name=$(monitors | grep -e ^DP.*-1\ | head -n1)
+elif [[ "$@" =~ "right" ]]
+then
+    ext_name=$(monitors | grep -e ^DP.*-2\ | head -n1)
+else
+    ext_name=$(monitors | head -n1)
+fi
+
+
+# Display a warning message if no external display was found
+if [[ -z "${ext_name}" ]]
+then
+    echo "No external display found!"
+    echo "Cannot connect"
+fi
+
+
+ext_opts="--auto"
+int_opts="--auto"
+
+if [[ "$@" =~ "leftof" ]]
+then
+    ext_opts="--auto --left-of $int_name"
+elif [[ "$@" =~ "rightof" ]]
+then
+    ext_opts="--auto --right-of $int_name"
+elif [[ "$@" =~ "above" ]]
+then
+    ext_opts="--auto --above $int_name"
+elif [[ "$@" =~ "only" ]]
+then
+    int_opts="--off"
+elif [[ "$@" =~ "off" ]]
+then
+    ext_opts="--off"
+fi
+
+
+if [[ "$@" =~ "primary" || "$@" =~ "only" ]]
+then
+    ext_opts="$ext_opts --primary"
+else
+    int_opts="$int_opts --primary"
+fi
+
+
+echo $int_name $int_opts
+echo $ext_name $ext_opts
+
+
+xrandr --output $int_name $int_opts \
+       --output $ext_name $ext_opts \
+
+
+if [[ "$@" =~ "split" ]]
+then
+    split_21 $ext_name
+elif [[ "$@" =~ "fullhd" ]]
+then
+    split_fullhd $ext_name
+fi
+
+pkill -USR1 polybar
+setbg
