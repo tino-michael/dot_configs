@@ -1,16 +1,15 @@
 #!/bin/sh
 
 # add scripts for controlling the display in an X session
-PATH=$PATH:/home/ichanmich/.local/bin/x11
+PATH=$PATH:$HOME/.local/bin/x11
 
 # if external monitor is connected, set as main and switch off internal one
-xrandr | grep -e "^DP-[12]\ connected" -q && usb only
+[[ monitors ]] && usb only
 
 # switch off screen blanking
-{
-    sleep 1
-    xset dpms 0 0 0
-} &
+xset dpms 0 0 0
+xset s off
+xset s noblank
 
 # load resources like colour schemes
 [ -f ${XRESOURCES} ] && xrdb -merge ${XRESOURCES}
