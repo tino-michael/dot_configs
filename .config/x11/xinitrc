@@ -10,6 +10,8 @@ xrandr | grep -e "^DP-[12]\ connected" -q && usb only
 {
     sleep 1
     xset dpms 0 0 0
+    xset s off
+    xset s noblank
 } &
 
 # load resources like colour schemes
