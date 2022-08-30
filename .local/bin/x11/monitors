@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# prints out the monitors connected via USB-C, DisplayPort and HDMI
+
+xrandr | grep -e "^\(D\(isplay\)\?P\|HDMI\).*\ connected" | cut -d " " -f 1
