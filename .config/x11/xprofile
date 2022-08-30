@@ -44,11 +44,11 @@ unclutter --timeout 7 --ignore-scrolling -b
 } &
 
 # KDE Connect
-/usr/lib/kdeconnectd &
-kdeconnect-indicator &
 {
-    sleep 5
-    # still doesn't reliably recognise phone sometimes
+    sleep 2
+    /usr/lib/kdeconnectd &
+    kdeconnect-indicator &
+    sleep 10
     kdeconnect-cli --refresh
     kdeconnect-cli -l
 } &
