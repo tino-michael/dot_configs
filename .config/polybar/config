@@ -59,7 +59,7 @@ label-maxlen = 75
 type = internal/date
 date = %%{F#999}%Y–%m–%d%%{F-} %%{F#bbb}%a%%{F-}  %%{F#fff}%H:%M:%S%%{F-}
 
-interval = 5
+interval = 1
 
 
 
