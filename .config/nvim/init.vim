@@ -269,7 +269,7 @@ aug end
 
 " auto delete trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * let currPos = getpos(".")
-autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre !*.md %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
