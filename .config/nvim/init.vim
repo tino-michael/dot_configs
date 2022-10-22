@@ -37,14 +37,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " python autocomlete (might conflict with coc?)
 Plug 'davidhalter/jedi-vim'
 
-let g:jedi#show_call_signatures = "0"
-let g:jedi#goto_command = "<leader>gt"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#goto_stubs_command = ""
-" let g:jedi#use_splits_not_buffers =
-" right"
+let g:jedi#show_call_signatures = '0'
+let g:jedi#goto_command = '<leader>gt'
+let g:jedi#rename_command = '<leader>r'
+let g:jedi#goto_stubs_command = ''
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#completions_enabled = 0
+" let g:jedi#use_splits_not_buffers = 'right'
 
 
 " Formater
@@ -125,7 +124,7 @@ set nocompatible
 set hidden
 
 " highlight columns 100 and 120 as vertical ruler
-let &colorcolumn="100,120"
+let &colorcolumn='100,120'
 highlight ColorColumn ctermbg=1
 
 " don't beep
@@ -139,8 +138,10 @@ autocmd BufLeave,FocusLost * silent! wall
 
 
 " Search configuration
-set ignorecase                    " ignore case when searching
-set smartcase                     " turn on smartcase
+" ignore case when searching
+set ignorecase                    
+" turn on smartcase
+set smartcase                     
 
 
 " Disables automatic commenting on newline:
@@ -156,6 +157,9 @@ set splitright
 
 " equalise widths and heights of all panes
 nnoremap <leader>f <C-W>=
+
+" escape terminal mode with escape key
+tnoremap <Esc> <C-\><C-n>
 
 " testing rounded separators (extra-powerline-symbols):
 let g:airline_left_sep = "\uE0B4"
