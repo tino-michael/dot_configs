@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-int_name=$(xrandr | grep -e ^eDP.*\ connected | head -n1 | cut -d " " -f 1)
+int_name=$(xrandr | grep -e "^eDP.* connected" | head -n1 | cut -d " " -f 1)
 
 if [[ -z "$(xrandr | grep $int_name)" ]]
 then
@@ -63,9 +63,10 @@ fi
 echo $int_name $int_opts
 echo $ext_name $ext_opts
 
-
-xrandr --output $int_name $int_opts \
-       --output $ext_name $ext_opts \
+CMD="xrandr"
+[ -z "$int_name" ] || CMD="$CMD --output $int_name $int_opts"
+[ -z "$ext_name" ] || CMD="$CMD --output $ext_name $ext_opts"
+$CMD
 
 
 if [[ "$@" =~ "split" ]]
