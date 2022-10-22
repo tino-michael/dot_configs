@@ -37,7 +37,7 @@ modules-right=pulseaudio_control backlight wlan recording_icon dunst_icon
 [bar/bottom_bar]
 inherit = bar/base_bar
 bottom = true
-modules-right=battery date
+modules-right=battery unread_mail date
 
 [bar/bottom_i3]
 inherit = bar/bottom_bar
@@ -62,6 +62,11 @@ date = %%{F#999}%Y–%m–%d%%{F-} %%{F#bbb}%a%%{F-}  %%{F#fff}%H:%M:%S%%{F-}
 interval = 1
 
 
+[module/unread_mail]
+type = custom/script
+exec = polymail -s
+interval = 60
+click-right = $EMAIL
 
 
 [module/mpd]

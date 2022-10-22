@@ -1,0 +1,67 @@
+#!/usr/bin/env python
+
+import imaplib
+import os
+import subprocess
+import argparse
+import glob
+
+ap = argparse.ArgumentParser()
+
+ap.add_argument("-l", "--logins_dir", type=str,
+        default=os.path.expandvars("${XDG_CONFIG_HOME}/polymail"),
+        help="The directory where login information are looked up.")
+ap.add_argument("-p", "--output_prefix", type=str, default="",
+        help="A string that may be printed in front of the number of unread mails.")
+ap.add_argument("-s", "--show_if_empty", action='store_true', default=False,
+        help="print even if the number of unread mails is zero.")
+
+args = ap.parse_args()
+
+
+def get_unread_count(files):
+    """
+    Given a list of GPG-encoded files, extract their email login information and check
+    for unread mails.
+
+    The function attempts to decode the files with a simple `gpg -dq $file`, so it is expected that
+    your local GPG setup can find the neccessary key to decrypt the files.
+    The decoded files are expected to contain the neccessary information to check mails via IMAP
+    with password, login name and imap server, in that order separated by a newline character.
+    The function returns the total number of unread mails over all given accounts.
+
+    Returns:
+    --------
+    unread : int
+        total number of unread mails over all given accounts
+    """
+
+    unread = 0
+
+    for f in files:
+        completed_process = subprocess.run(
+                ['gpg', '-dq', f], check=True,
+                stdout=subprocess.PIPE, encoding="utf-8")
+        password, login, imap = completed_process.stdout.split("\n")[:3]
+
+        obj = imaplib.IMAP4_SSL(imap, 993)
+        obj.login(login, password)
+        obj.select()
+        unread += len(obj.search(None, 'unseen')[1][0].split())
+
+    return unread
+
+
+try:
+    files = glob.glob(os.path.join(args.logins_dir, "*.gpg"))
+    unread = get_unread_count(files)
+except Exception:
+    unread = 0
+
+if unread > 0 or args.show_if_empty:
+    result = f"{unread}"
+
+    if args.output_prefix:
+        result = f"{args.output_prefix} {result}"
+
+    print(result)
