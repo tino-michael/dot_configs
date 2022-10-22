@@ -18,10 +18,10 @@ WALLPAPER=${XDG_DATA_HOME}/wallpaper
     SOURCE=$(readlink -f "$1") &&
     ln -sfn "${SOURCE}" "${WALLPAPER}" &&
     echo "$SOURCE" &&
-    notify-send -i "${SOURCE}" "Changing wallpaper..." "${SOURCE}"
+    notify-send -i "${SOURCE}" "Changing wallpaper..." "${SOURCE}" 
 
 [ -f "$WALLPAPER" ] &&
     feh --no-fehbg --bg-fill $WALLPAPER
 
-[ -d "$WALLPAPER" ] && echo true &&
+[ -d "$WALLPAPER" ] &&
     feh --no-fehbg --recursive --randomize --bg-fill $WALLPAPER
