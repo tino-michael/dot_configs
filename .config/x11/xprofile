@@ -3,7 +3,7 @@
 # the notification daemon.
 dunst &
 # Enable compositing.
-picom -b
+picom --vsync -b
 
 # UDisks front-end for automounting removable media.
 udiskie -ans &
