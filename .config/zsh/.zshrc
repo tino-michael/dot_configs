@@ -70,6 +70,15 @@ lfcd ()
 }
 bindkey -s '^o' 'lfcd\n'
 
+# use fzf as a fuzzy history finder on Ctrl-R
+fuzzy_hist()
+{
+    history | fzf +s --tac
+}
+zle -N fuzzy_hist
+bindkey '^R' fuzzy_hist
+
+
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
