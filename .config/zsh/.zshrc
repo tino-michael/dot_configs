@@ -163,3 +163,5 @@ case $TERM in
         }
         ;;
 esac
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
