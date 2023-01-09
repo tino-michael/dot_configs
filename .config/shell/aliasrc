@@ -52,6 +52,9 @@ alias notebook='jupyter notebook'
 
 alias latexmk='latexmk -pvc -f -pdf -synctex=1 -interaction=batchmode'
 
+# create a directory and cd into it
+md() {[ -n "$1" ] && mkdir -p $@ && cd $1}
+
 lower_case ()
 {
   find . -name '*.*' -exec sh -c '
