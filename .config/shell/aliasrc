@@ -22,6 +22,7 @@ alias nowdatetime='echo $(nowdate)_$(nowtime)'
 
 alias df='df -HT --total'
 alias du='du -hc'
+alias egrep='grep -E'
 
 alias emacs='emacs -nw'
 alias vi='nvim'
