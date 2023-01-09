@@ -45,7 +45,9 @@ window:
 
 key_bindings:
   - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
-  - { key: Key0,     mods: Control, action: ResetFontSize }
   - { key: Minus,    mods: Control, action: IncreaseFontSize }
   - { key: Minus,    mods: Alt, action: DecreaseFontSize }
-  - { key: Minus,    mods: Control|Shift, action: DecreaseFontSize }
+  - { key: Key0,     mods: Control, action: ResetFontSize }
+  - { key: N,        mods: Control|Shift, action: IncreaseFontSize }
+  - { key: R,        mods: Control|Shift, action: DecreaseFontSize }
+  - { key: H,        mods: Control|Shift, action: ResetFontSize }
