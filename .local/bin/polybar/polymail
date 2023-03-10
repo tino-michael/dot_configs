@@ -58,7 +58,7 @@ try:
 except Exception:
     unread = 0
 
-if unread > 0 or args.show_if_empty:
+if unread > 0 or args.show_if_empty and files:
     result = f"{unread}"
 
     if args.output_prefix:
