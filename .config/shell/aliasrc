@@ -29,7 +29,11 @@ alias vi='nvim'
 alias vim='nvim'
 alias e='$EDITOR'
 
+# lf-wrapper to preview images
 alias lf='lfrun'
+
+# fuzzy change directory
+alias fcd='cd $(find . -type d | fzf)'
 
 # things that don't play well with conda's virtual environment
 alias yay='conda deactivate && \yay'
