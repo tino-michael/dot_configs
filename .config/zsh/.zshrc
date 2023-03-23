@@ -134,7 +134,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # do NOT source conda and activate conda env when X is not yet running
 # only do so, when starting new graphical terminal (i.e. X is running)
@@ -164,4 +163,11 @@ case $TERM in
         ;;
 esac
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+for F in \
+    /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    /usr/share/fzf/completion.zsh \
+    /usr/share/fzf/key-bindings.zsh
+do
+    [ -f "$F" ] && source "$F"
+done
