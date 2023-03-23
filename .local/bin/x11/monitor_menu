@@ -1,0 +1,46 @@
+#!/bin/bash
+
+MENU_CMD="rofi -dmenu -no-case-sensitive -auto-select"
+
+SEL_MON=$(xrandr | grep -e "\bconnected\b" | cut -d " " -f 1 |
+    $MENU_CMD -p "select monitor")
+[ -z "$SEL_MON" ] && exit
+
+
+MODE=$(printf "auto\nonly\nprimary\noff" |
+    $MENU_CMD -p "select mode")
+[ -z "$MODE" ] && exit
+
+
+# if MODE is `only` run xrandr here to switch off all other monitors and exit
+# if MODE is `off` switch off this monitor and exit
+if [[ "$MODE" == "only" ]]
+then
+    echo "mode is only"
+    echo "setting $SEL_MON to auto primary"
+    xrandr --output $SEL_MON --auto --primary
+    xrandr | grep -e "\bconnected\b" | cut -d " " -f 1 | grep -v $SEL_MON | while read mon;
+    do
+        echo "switching off $mon"
+        xrandr --output $mon --off
+    done
+    exit 0
+elif [[ "$MODE" == "off" ]]
+then
+    xrandr --output $SEL_MON --off
+    exit 0
+fi
+
+
+REL_POSITION=$(printf "left-of\nright-of\nsame-as\nabove\nbelow" |
+    $MENU_CMD -p "select relative positioning")
+[ -z "$REL_POSITION" ] && exit
+
+
+POS_REFERENCE=$(xrandr | grep -e "\bconnected\b" | cut -d " " -f 1 | grep -v $SEL_MON |
+    $MENU_CMD -p "select position reference")
+[ -z "$POS_REFERENCE" ] && exit
+
+
+set -x
+xrandr --output $SEL_MON --$MODE --$REL_POSITION $POS_REFERENCE
