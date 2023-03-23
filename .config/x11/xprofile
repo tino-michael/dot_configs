@@ -25,9 +25,8 @@ unclutter --timeout 7 --ignore-scrolling -b
 # polybar
 # needs a second to be ready and read the window title correctly
 {
-    polybar bottom_dwm &
     sleep 1
-    polybar top_bar &
+    polybar_start &
 } &
 
 # NetworkManager Tray Icon

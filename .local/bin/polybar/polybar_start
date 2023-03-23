@@ -1,0 +1,4 @@
+#!/bin/sh
+
+polybar bottom_dwm &
+polybar top_bar &
