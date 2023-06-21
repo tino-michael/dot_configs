@@ -1,11 +1,6 @@
 #!/bin/sh
 
-# list files in long list (l), with human readable size units (h), omit backups (B)
-# and sort version numbers naturally (v)
-# alias ls='ls -lhBv --group-directories-first --color=auto --time-style=+"%Y-%m-%d %H:%M"'
-# list almost all but omit implied '.' and '..' (A)
-# alias la='ls -lhAv --group-directories-first --color=auto --time-style=+"%Y-%m-%d %H:%M"'
-# try exa as ls drop-in replacement
+# exa as ls drop-in replacement
 alias ls='exa -lh --group-directories-first --git --time-style=long-iso'
 alias la='exa -lah --group-directories-first --git --time-style=long-iso'
 
@@ -78,9 +73,6 @@ lower_case ()
   [ "$a" != "$0" ] && mv "$0" "$a" ' {} \;
 }
 alias photo_rename='exiftool -ext jpg -ext jpeg -ext nef -d %Y-%m-%d_%H-%M-%S%%-c.%%e "-filename<CreateDate" "-filename<datetimeoriginal" * && lower_case'
-
-# alternative pass call with alternative password-store location
-alias pass_ftb='PASSWORD_STORE_DIR=${PASSWORD_STORE_DIR}_ftb pass'
 
 # Use $XINITRC variable for startx
 alias startx='startx $XINITRC'
