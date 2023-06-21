@@ -29,8 +29,20 @@ alias vi='nvim'
 alias vim='nvim'
 alias e='$EDITOR'
 
-# lf-wrapper to preview images
-alias lf='lfrun'
+# lf-wrapper to change dir on exit
+# (Taken from Luke Smith: https://github.com/LukeSmithxyz)
+lfcd ()
+{
+    tmp="$(mktemp)"
+    lfrun -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+alias lf='lfcd'
+
 
 # fuzzy change directory
 alias fcd='cd $(find . -type d | fzf)'
