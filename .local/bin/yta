@@ -1,25 +1,27 @@
 #!/bin/sh
 
 # downloads a youtube video and extracts its audio stream.
-# configure in ~/.config/youtube-dl.conf e.g. for download location
+# configure in ~/.config/yt-dlp/config e.g. for download location
 
 ask_tag ()
 {
-   dmenu -i -p "enter youtube video tag" -lines 0 -width 25
+    rofi -dmenu -i -p "enter youtube video tag" \
+       -theme-str '#window {width: 30%; y-offset: -18%;} #listview {lines: 0;}'
 }
 
 # use either the CLI argument or open a dmenu and ask for the youtube video tag to download
 TAG=${1:-$(ask_tag)}
 
-FN=$(youtube-dl --extract-audio --get-filename $TAG)
+[ -z "$TAG" ] && exit 0
+
+FN=$(yt-dlp --extract-audio --get-filename "$TAG")
 BN=$(basename "$FN")
 
 # check if the file is already in the download directory -- if not, download
 # send system notifications accordingly
 [ -e "$FN" ] &&
-    notify-send youtube-dl "$BN already exists in download dir" ||
+    notify-send yt-dlp "$BN already exists in download dir" ||
     {
-        youtube-dl --extract-audio $TAG &&
-        [ -e "$FN" ] && notify-send youtube-dl "$BN downloaded"
+        yt-dlp --extract-audio "$TAG" &&
+        [ -e "$FN" ] && notify-send yt-dlp "$BN downloaded"
     }
-
