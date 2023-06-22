@@ -18,7 +18,8 @@ return {
             {"<leader>m", vim.cmd.NvimTreeFocus, mode="n"},
 
             -- finds the current file in nvimtree, marking it; opens tree if necessary
-            {"<M-b>", vim.cmd.NvimTreeFindFile, mode="n"}
+            {"<M-b>", vim.cmd.NvimTreeFindFile, mode="n"},
+            {"<M-m>", vim.cmd.NvimTreeFocus, mode="n"},
         },
 
         config = {
