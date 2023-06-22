@@ -19,7 +19,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- paste over highlight without losing buffer
-vim.keymap.set("x", "<A-p>", [["_dP]])
+vim.keymap.set({"x", "v"}, "<A-p>", [["_dP]])
 
 -- yank to and paste from system clipboard
 vim.keymap.set("n", "<C-y>", [[<S-v>"+y]])
@@ -47,6 +47,8 @@ vim.keymap.set("n", "<leader>f", "<C-W>=")
 -- indent with tab in normal mode
 vim.keymap.set("n", "<tab>", ">>")
 vim.keymap.set("n", "<s-tab>", "<<")
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- go to last active tab
 vim.g.last_tab = 1
