@@ -22,7 +22,7 @@ return {
             {"<M-m>", vim.cmd.NvimTreeFocus, mode="n"},
         },
 
-        config = {
+        opts = {
             sort_by = "case_sensitive",
             view = {
                 adaptive_size = true,

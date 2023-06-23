@@ -1,6 +1,6 @@
 return {
     'nvim-lualine/lualine.nvim',
-    config = {
+    opts = {
         options = {
             theme = 'auto',
             component_separators = { left = '|', right = '|'},
