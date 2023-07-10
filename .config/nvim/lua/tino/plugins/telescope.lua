@@ -8,14 +8,20 @@ return {
                 require('telescope.builtin').find_files()
             end, mode="n"},
 
-        -- {'<C-p>', builtin.git_files, mode="n"},
+        {'<leader>z', function()
+                require('telescope.builtin').buffers()
+            end, mode="n"},
 
         {'<leader>ä', function()
-                require('telescope.builtin').grep_string({ search = vim.fn.input("Grep > ") })
+                require('telescope.builtin').live_grep({})
             end, mode="n"},
 
         {'<leader>dd', function()
                 require('telescope.builtin').diagnostics()
+            end, mode="n"},
+
+        {'<leader>k', function()
+                require('telescope.builtin').keymaps()
             end, mode="n"}
     }
 }
