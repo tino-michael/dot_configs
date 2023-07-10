@@ -9,6 +9,7 @@
     cl = clone
     ci = commit
     cm = commit -m
+    am = commit --amend
     br = branch
     rb = rebase
     r = reset
