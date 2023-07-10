@@ -1,8 +1,4 @@
 return {
-    {'nvim-treesitter/nvim-treesitter', build=":TSUpdate"},
-    'theprimeagen/harpoon',
-
-    'tpope/vim-fugitive',
 
     -- Insert or delete brackets, parens, quotes in pair.
     'jiangmiao/auto-pairs',
