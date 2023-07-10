@@ -1,7 +1,10 @@
 return {
 
     -- Insert or delete brackets, parens, quotes in pair.
-    'jiangmiao/auto-pairs',
+    {'jiangmiao/auto-pairs', config=function()
+            vim.g.AutoPairsMultilineClose=0
+        end
+    },
 
     -- VCS indicators
     'mhinz/vim-signify',
