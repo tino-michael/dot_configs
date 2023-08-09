@@ -72,7 +72,7 @@ vim.keymap.set("n", "<leader>t6", "6gt")
 vim.keymap.set("n", "<leader>t7", "7gt")
 vim.keymap.set("n", "<leader>t8", "8gt")
 vim.keymap.set("n", "<leader>t9", "9gt")
-vim.keymap.set("n", "<leader>t0", ":tablast<cr>")
+vim.keymap.set("n", "<leader>t0", vim.cmd.tablast)
 
 -- unfold
 vim.keymap.set("n", "<c-f>", "za")
