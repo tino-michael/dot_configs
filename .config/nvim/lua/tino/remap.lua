@@ -27,11 +27,6 @@ vim.keymap.set("v", "<C-y>", [["+y]])
 vim.keymap.set({"n", "v"}, "<C-p>", [["+p]])
 vim.keymap.set("i", "<C-p>", [[<esc>"+Pi]])
 
--- replace word under cursor in whole document
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//g<left><left>]])
--- replace marked text in visual mode in whole document
-vim.keymap.set("v", "<leader>r", [["hy:%s/<C-r>h//g<left><left>]])
-
 -- make current file executable `chmod +x`
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 

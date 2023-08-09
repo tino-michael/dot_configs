@@ -8,5 +8,5 @@ return {
 
     keys = {
         {"<c-n>", vim.cmd.ClangdSwitchSourceHeader, mode="n"},
-    }
+    },
 }
