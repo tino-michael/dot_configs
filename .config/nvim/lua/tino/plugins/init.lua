@@ -6,8 +6,6 @@ return {
         end
     },
 
-    -- VCS indicators
-    'mhinz/vim-signify',
 
     -- csv helper
     'chrisbra/csv.vim',
