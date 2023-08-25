@@ -22,6 +22,15 @@ return {
 
         {'<leader>k', function()
                 require('telescope.builtin').keymaps()
-            end, mode="n"}
+            end, mode="n"},
+
+        {'<leader>rr', function()
+                require('telescope.builtin').lsp_references()
+            end, mode="n"},
+
+        {'<leader>ee', function()
+                require "todo-comments"
+                vim.cmd.TodoTelescope()
+            end, mode="n"},
     }
 }
