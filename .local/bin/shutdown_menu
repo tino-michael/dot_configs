@@ -11,13 +11,13 @@ pkill_15_all ()
 shutdown_safe ()
 {
     pkill_15_all
-    shutdown now
+    systemctl poweroff -i
 }
 
 reboot_safe ()
 {
     pkill_15_all
-    reboot
+    systemctl reboot -i
 }
 
 ask_action ()
