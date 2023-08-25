@@ -37,14 +37,23 @@ return {
 
         -- setting breakpoints
         {"<F4>", function()
-                require'dap'.toggle_breakpoint()
+                -- require'dap'.toggle_breakpoint()
+                require('persistent-breakpoints.api').toggle_breakpoint()
+            end, mode="n"},
+        {"<F16>", function()
+                require('persistent-breakpoints.api').set_conditional_breakpoint()
             end, mode="n"},
 
         -- start or continue debug session
         {"<F5>", function()
+            local ft = vim.api.nvim_buf_get_option(0, 'filetype')
+            if ft == 'rust' then
+                vim.cmd.RustDebuggables()
+            else
                 -- loading launch.json file
                 require'dap.ext.vscode'.load_launchjs(nil, { cppdbg = {'c', 'cpp'} })
                 require'dap'.continue()
+            end
             end, mode="n"},
 
         -- restart last debug session F17 = shift+F5
@@ -79,7 +88,7 @@ return {
 
         dap.adapters.lldb = {
             type = 'executable',
-            command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+            command = vim.fn.stdpath('data') .. '/mason/bin/codelldb',
             name = 'lldb'
         }
 
