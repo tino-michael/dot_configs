@@ -6,6 +6,15 @@ return {
         end
     },
 
+    {
+        'folke/todo-comments.nvim',
+        dependencies = {"nvim-lua/plenary.nvim"},
+        event = "BufRead",
+        opts = {},
+        config = {},
+        keys = {
+        }
+    },
 
     -- csv helper
     'chrisbra/csv.vim',
