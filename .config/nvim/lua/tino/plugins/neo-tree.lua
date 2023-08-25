@@ -46,6 +46,8 @@ return {
             mappings = {
                 ["o"] = "open",
                 ["e"] = "open",
+                ["-"] = "navigate_up",
+                ["+"] = "set_root",
             }
         }
     }
