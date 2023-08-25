@@ -1,31 +1,32 @@
+local autocmd = vim.api.nvim_create_autocmd
 local grp = vim.api.nvim_create_augroup("autocmd_grp", { clear = true })
 
 -- spell-checking certain file types (toggle locally with leader-s)
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufRead", "BufNewFile" },
     { pattern = { "*.txt", "*.md", "*.tex" }, command = "setlocal spell", group = grp }
 )
 
 -- auto delete trailing whitespace and newlines at end of file on save.
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePre" },
     { command = [[let currPos = getpos(".")]], group = grp }
 )
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePre" },
     { command = [[ %s/\s\+$//e ]], group = grp }
 )
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePre" },
     { command = [[ %s/\n\+\%$//e ]], group = grp  }
 )
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePre" },
     { command = [[ cal cursor(currPos[1], currPos[2]) ]], group = grp  }
 )
 
 -- Update polybar when config is updated.
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePost" },
     {
         pattern = { "*/polybar/config" },
@@ -35,7 +36,7 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Update mpd when config is updated.
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePost" },
     {
         pattern = { "*/mpd.conf" },
@@ -45,7 +46,7 @@ vim.api.nvim_create_autocmd(
 )
 
 -- generate config files when their template changed
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePost" },
     {
         pattern = { "*/alacritty.yml.in", "*/dunstrc.in" },
@@ -55,17 +56,17 @@ vim.api.nvim_create_autocmd(
 )
 
 -- reread xresources when config is updated
-vim.api.nvim_create_autocmd(
+autocmd(
     { "BufWritePost" },
     {
         pattern = { "*/xresources" },
-        command = [[ !xrdb % ]],
+        command = [[ !xrdb % && generate_xresource_configs ]],
         group = grp
     }
 )
 
 -- clear latex auxiliary files when leaving a .tex file
-vim.api.nvim_create_autocmd(
+autocmd(
     { "VimLeave" },
     {
         pattern = { "*.tex" },
@@ -74,24 +75,23 @@ vim.api.nvim_create_autocmd(
     }
 )
 
-
 -- auto arranges specific csv files
 local grp = vim.api.nvim_create_augroup("csv_group", { clear = true })
 
-vim.api.nvim_create_autocmd(
-{ "BufRead", "BufWritePost" },
-{
-    pattern = { "*.csv" },
-    command = [[:%ArrangeColumn]],
-    group = grp
-}
+autocmd(
+    { "BufRead", "BufWritePost" },
+    {
+        pattern = { "*.csv" },
+        command = [[:%ArrangeColumn]],
+        group = grp
+    }
 )
 
-vim.api.nvim_create_autocmd(
-{ "BufWritePre" },
-{
-    pattern = { "*.csv" },
-    command = [[:%UnArrangeColumn]],
-    group = grp
-}
+autocmd(
+    { "BufWritePre" },
+    {
+        pattern = { "*.csv" },
+        command = [[:%UnArrangeColumn]],
+        group = grp
+    }
 )
