@@ -29,9 +29,11 @@ export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 export PASSWORD_STORE_DIR=${XDG_DATA_HOME}/password-store
 
 
-# Use bat (https://github.com/sharkdp/bat) as viewer for manpages
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Use bat as viewer for manpages
+man(){/usr/bin/man $1 | col -bx | bat -l man -p}
 
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export PATH="$PATH:$CARGO_HOME/bin"
 
 export PYTHONIOENCODING=UTF-8
 export HISTCONTROL=ignoredups
