@@ -1,5 +1,5 @@
 local lsp = require 'lsp-zero'
-local cnf = require 'lspconfig'
+local lspconfig = require 'lspconfig'
 local cmp = require 'cmp'
 
 local mason = require 'mason'
@@ -7,8 +7,6 @@ local mason_lsp = require 'mason-lspconfig'
 
 
 
-
--- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -25,7 +23,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
         "additionalTextEdits",
     },
 }
-
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -53,7 +50,7 @@ local on_attach = function(client, bufnr)
 
     buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+    -- buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
     -- smart word rename (intellisense)
     buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
@@ -65,71 +62,14 @@ local on_attach = function(client, bufnr)
 end
 
 
-mason.setup()
-mason_lsp.setup {
-    ensure_installed = {
-        -- `pyright`: LSP from MS, to be abandoned in favor for pylance
-        -- `pylint`: very slow
-        'pylsp',
-        'bashls',
-        'lua_ls',
-        'clangd',
-        'rust_analyzer',
-    },
-}
+lsp.preset('recommended')
 
 
-mason_lsp.setup_handlers {
+mason_lsp.setup_handlers({
     function(server_name)
-        cnf[server_name].setup {
+        lspconfig[server_name].setup {
             on_attach = on_attach,
             capabilities = capabilities,
         }
     end,
-
-    ["lua_ls"] = function()
-        cnf["lua_ls"].setup({
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" },
-                        disable = {"lowercase-global"},
-                    },
-                    hint = {
-                        enable = true,
-                    },
-                },
-            },
-        })
-    end,
-}
-
-
-
-lsp.preset('recommended')
-
-vim.diagnostic.config({
-    virtual_text = true,
-})
-
-local cmp_mappings = lsp.defaults.cmp_mappings()
-
--- confirm completion with tab
-cmp_mappings['<Tab>'] = cmp.mapping.confirm({ select = true })
--- disable completion with return
-cmp_mappings['<CR>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
-})
-
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
-    }
 })
