@@ -3,6 +3,7 @@
 # exa as ls drop-in replacement
 alias ls='exa -lh --group-directories-first --git --time-style=long-iso'
 alias la='exa -lah --group-directories-first --git --time-style=long-iso'
+alias lg='exa -lahg --group-directories-first --git --time-style=long-iso'
 
 alias top='htop'
 alias grep='grep --color=auto'
