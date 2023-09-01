@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # exa as ls drop-in replacement
-alias ls='exa -lh --group-directories-first --git --time-style=long-iso'
-alias la='exa -lah --group-directories-first --git --time-style=long-iso'
-alias lg='exa -lahg --group-directories-first --git --time-style=long-iso'
+alias ls='exa -lh --group-directories-first --git --time-style=long-iso --icons'
+alias la='exa -lah --group-directories-first --git --time-style=long-iso --icons'
+alias lg='exa -lahg --group-directories-first --git --time-style=long-iso --icons'
 
 alias top='htop'
 alias grep='grep --color=auto'
@@ -40,11 +40,9 @@ lfcd ()
 alias lf='lfcd'
 
 
-# fuzzy change directory
-alias fcd='cd $(find . -type d | fzf)'
 
 # things that don't play well with conda's virtual environment
-alias yay='conda deactivate && \yay'
+alias yay='conda deactivate ; \yay'
 
 # organise configs in home git repo
 alias home='/usr/bin/git --git-dir=$HOME/.local/repos/dot_configs --work-tree=$HOME'
@@ -68,7 +66,7 @@ alias notebook='jupyter notebook'
 alias latexmk='latexmk -pvc -f -pdf -synctex=1 -interaction=batchmode'
 
 # create a directory and cd into it
-md() {[ -n "$1" ] && mkdir -p $@ && cd $1}
+mcd() {[ -n "$1" ] && mkdir -p $@ && cd $1}
 
 lower_case ()
 {

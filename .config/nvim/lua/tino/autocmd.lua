@@ -60,7 +60,17 @@ autocmd(
     { "BufWritePost" },
     {
         pattern = { "*/xresources" },
-        command = [[ !xrdb % && generate_xresource_configs ]],
+        command = [[ !xrdb % ]],
+        group = grp
+    }
+)
+
+-- restart waybar when config files are changed
+autocmd(
+    { "BufWritePost" },
+    {
+        pattern = { "*/waybar/*" },
+        command = [[ ! killall waybar; waybar & ]],
         group = grp
     }
 )
@@ -74,6 +84,7 @@ autocmd(
         group = grp
     }
 )
+
 
 -- auto arranges specific csv files
 local grp = vim.api.nvim_create_augroup("csv_group", { clear = true })

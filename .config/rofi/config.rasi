@@ -1,9 +1,9 @@
 configuration {
-	modi: "combi";
+	modi: "combi,ssh,window";
 	eh: 2;
 	font: "Noto Sans 15";
 	show-icons: true;
-	combi-modi: "drun,run,window";
+	combi-modi: "drun,run,ssh,window";
 }
 
 @theme "theme"
