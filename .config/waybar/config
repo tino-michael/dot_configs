@@ -1,0 +1,25 @@
+[
+    {
+        "layer": "top",
+        "position": "top",
+        "height": 35,
+
+        "include": [ "~/.config/waybar/modules.config" ],
+
+        "modules-left": ["hyprland/window"],
+        "modules-center": ["mpd"],
+        "modules-right": ["backlight", "pulseaudio", "tray"],
+    },
+    {
+        "layer": "top",
+        "position": "bottom",
+        "height": 35,
+
+        "include": [ "~/.config/waybar/modules.config" ],
+
+        "modules-left": ["wlr/workspaces"],
+        "modules-center": [],
+        "modules-right": ["battery", "clock"],
+
+    }
+]
