@@ -54,8 +54,6 @@ local on_attach = function(client, bufnr)
     -- smart word rename (intellisense)
     buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
-    ----------------------- Diagnostics -----------------------
-    buf_set_keymap("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>", opts)
     -- buf_set_keymap("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
     -- this makes use of the TroubleToggle plugin but still fits into this lsp ecosystem
     -- buf_set_keymap("n", "<leader>dt", "<cmd>TroubleToggle<CR>", opts)

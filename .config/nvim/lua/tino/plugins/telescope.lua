@@ -16,7 +16,7 @@ return {
                 require('telescope.builtin').live_grep({})
             end, mode="n"},
 
-        {'<leader>dd', function()
+        {'<leader>d', function()
                 require('telescope.builtin').diagnostics()
             end, mode="n"},
 
@@ -28,7 +28,7 @@ return {
                 require('telescope.builtin').lsp_references()
             end, mode="n"},
 
-        {'<leader>ee', function()
+        {'<leader><leader>e', function()
                 require "todo-comments"
                 vim.cmd.TodoTelescope()
             end, mode="n"},
