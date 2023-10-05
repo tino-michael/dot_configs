@@ -1,5 +1,10 @@
 return {
 
+    {
+        'stevearc/dressing.nvim',
+        event = "VeryLazy",
+    },
+
     -- Insert or delete brackets, parens, quotes in pair.
     {'jiangmiao/auto-pairs', config=function()
             vim.g.AutoPairsMultilineClose=0
@@ -12,12 +17,29 @@ return {
         event = "BufRead",
         opts = {},
         config = {},
-        keys = {
+        keys = {}
+    },
+
+    {
+        'cameron-wags/rainbow_csv.nvim',
+        config = true,
+        ft = {
+            'csv',
+            'tsv',
+            'csv_semicolon',
+            'csv_whitespace',
+            'csv_pipe',
+            'rfc_csv',
+            'rfc_semicolon'
+        },
+        cmd = {
+            'RainbowDelim',
+            'RainbowDelimSimple',
+            'RainbowDelimQuoted',
+            'RainbowMultiDelim'
         }
     },
 
-    -- csv helper
-    'chrisbra/csv.vim',
     -- sum values in visual mode
     'sk1418/HowMuch',
 }

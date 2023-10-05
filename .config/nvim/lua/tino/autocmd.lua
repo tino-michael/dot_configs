@@ -93,7 +93,7 @@ autocmd(
     { "BufRead", "BufWritePost" },
     {
         pattern = { "*.csv" },
-        command = [[:%ArrangeColumn]],
+        command = [[:RainbowAlign]],
         group = grp
     }
 )
@@ -102,7 +102,7 @@ autocmd(
     { "BufWritePre" },
     {
         pattern = { "*.csv" },
-        command = [[:%UnArrangeColumn]],
+        command = [[:RainbowShrink]],
         group = grp
     }
 )
