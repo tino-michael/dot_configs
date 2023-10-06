@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+/usr/lib/kdeconnectd &
+
+sleep 5
+
+kdeconnect-cli --refresh
+kdeconnect-cli -l
+
+sleep 5
+
+kdeconnect-indicator &
