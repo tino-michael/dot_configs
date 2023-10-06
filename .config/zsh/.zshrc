@@ -144,6 +144,7 @@ esac
 
 for F in \
     /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    ~/.local/share/foot/shell_int.zsh \
     /usr/share/fzf/completion.zsh \
     /usr/share/fzf/key-bindings.zsh
 do
