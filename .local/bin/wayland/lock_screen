@@ -1,0 +1,47 @@
+#!/bin/sh
+
+BLANK='#00000000'
+CLEAR='#ffffff22'
+DEFAULT='#ff00ffcc'
+TEXT='#ee00eeee'
+WRONG='#880000bb'
+VERIFYING='#bb00bbbb'
+
+WALLPAPER=~/.local/share/wallpaper
+LOCKPAPER=/tmp/lockpaper
+
+
+[ -f "$WALLPAPER" ] &&
+    WALL=$(shuf -n1 -e $WALLPAPER)
+
+[ -d "$WALLPAPER" ] &&
+    WALL=$(shuf -n1 -e ${WALLPAPER}/*)
+
+convert $WALL -resize 1920x1080^ -gravity center $LOCKPAPER
+
+
+
+# --time-color=$TEXT           \
+# --date-color=$TEXT           \
+# --layout-color=$TEXT         \
+# --keyhl-color=$WRONG         \
+# --bshl-color=$WRONG          \
+swaylock \
+--inside-ver-color=$CLEAR    \
+--ring-ver-color=$VERIFYING  \
+--text-ver-color=$TEXT       \
+\
+--inside-wrong-color=$CLEAR  \
+--ring-wrong-color=$WRONG    \
+--text-wrong-color=$TEXT     \
+\
+--inside-color=$BLANK        \
+--ring-color=$DEFAULT        \
+--line-color=$BLANK          \
+--separator-color=$DEFAULT   \
+\
+--image=$LOCKPAPER           \
+--clock                      \
+--indicator                  \
+--timestr="%H:%M:%S"        \
+--datestr="%A, %Y-%m-%d"    \
