@@ -17,7 +17,7 @@
 
         "include": [ "~/.config/waybar/modules.config" ],
 
-        "modules-left": ["wlr/workspaces"],
+        "modules-left": ["hyprland/workspaces"],
         "modules-center": [],
         "modules-right": ["battery", "clock"],
 
