@@ -113,12 +113,24 @@ button:hover {
     background-color: transparent;
 }
 
+/* if battery is almost full, make it transparent
+ * this is the default, overwrite with lower-charge "state" rules
+ */
 #battery {
+    color: rgba(200,200,200,.25);
     background-color: #1a1a1a;
 }
 
 #battery.charging, #battery.plugged {
     background-color: #1a1a1a;
+}
+
+#battery.good {
+    color: #bbbbbb;
+}
+
+#battery.warning {
+    color: orange;
 }
 
 @keyframes blink {
