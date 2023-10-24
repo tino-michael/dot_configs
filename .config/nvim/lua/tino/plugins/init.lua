@@ -26,7 +26,11 @@ return {
         dependencies = {"nvim-lua/plenary.nvim"},
         event = "BufRead",
         opts = {},
-        config = {},
+        config = {
+            keywords = {
+                TODO = { icon = " ", color = "info" },
+            },
+        },
         keys = {}
     },
 
