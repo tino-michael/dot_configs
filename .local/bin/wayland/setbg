@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Sets the desktop wallpaper using `feh`.
-# Inspired by Luke Smith (https://github.com/LukeSmithxyz) but made more flexible to also
-# deal with directories.
+# Sets the desktop wallpaper using `swaybg`.
+# swaybg runs as a background process and does not terminate if a new process is called.
+# Instead, there will be two swaybg processes running. So kill the one that is running when trying
+# to replace the current wallpaper.
 #
 # If a file or directory is given as first argument, sets the wallpaper to that file
 # or picks a random one from the directory.
@@ -15,13 +16,26 @@
 WALLPAPER=${XDG_DATA_HOME}/wallpaper
 
 [ ! -z $1 ] &&
+{
     SOURCE=$(readlink -f "$1") &&
     ln -sfn "${SOURCE}" "${WALLPAPER}" &&
     echo "$SOURCE" &&
-    notify-send -i "${SOURCE}" "Changing wallpaper..." "${SOURCE}" 
+    notify-send -i "${SOURCE}" "Changing wallpaper..." "${SOURCE}"
+}
 
 [ -f "$WALLPAPER" ] &&
-    feh --no-fehbg --bg-fill $WALLPAPER
+{
+    PID=$(pgrep swaybg)
+    swaybg -o "*" -i "${WALLPAPER}" &
+    sleep 1
+    [[ $PID ]] && kill $PID
+}
 
 [ -d "$WALLPAPER" ] &&
-    feh --no-fehbg --recursive --randomize --bg-fill $WALLPAPER
+{
+    PID=$(pgrep swaybg)
+    WALL=$(shuf -n1 -e ${WALLPAPER}/*)
+    swaybg -o "*" -i "${WALL}" &
+    sleep 1
+    [[ $PID ]] && kill $PID
+}

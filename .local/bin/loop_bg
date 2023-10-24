@@ -1,0 +1,16 @@
+#!/bin/bash
+
+BG_COMMAND=setbg
+SLEEP_TIME=600
+
+[[ $(command -v $BG_COMMAND) ]] || {
+    echo "no '$BG_COMMAND' command found! exiting!"
+    exit -1
+}
+
+
+while :
+do
+    $BG_COMMAND
+    sleep $SLEEP_TIME
+done

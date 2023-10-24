@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Sets the desktop wallpaper using `feh`.
+# Inspired by Luke Smith (https://github.com/LukeSmithxyz) but made more flexible to also
+# deal with directories.
+#
+# If a file or directory is given as first argument, sets the wallpaper to that file
+# or picks a random one from the directory.
+# If no argument is given, does the same again, i.e. sets the single file again or picks a
+# new one from the directory.
+# It manages so by setting a sym-link to the given resource at ${XDG_DATA_HOME}/wallpaper.
+# Can be used at startup to set the wallpaper or, when pointed to a directory, put in a
+# loop to create a random walpaper slideshow.
+
+WALLPAPER=${XDG_DATA_HOME}/wallpaper
+
+[ ! -z $1 ] &&
+    SOURCE=$(readlink -f "$1") &&
+    ln -sfn "${SOURCE}" "${WALLPAPER}" &&
+    echo "$SOURCE" &&
+    notify-send -i "${SOURCE}" "Changing wallpaper..." "${SOURCE}"
+
+[ -f "$WALLPAPER" ] &&
+    feh --no-fehbg --bg-fill $WALLPAPER
+
+[ -d "$WALLPAPER" ] &&
+    feh --no-fehbg --recursive --randomize --bg-fill $WALLPAPER

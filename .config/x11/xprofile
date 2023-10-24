@@ -60,3 +60,5 @@ unclutter --timeout 7 --ignore-scrolling -b
         sleep 600
     done
 } &
+
+loop_bg &
