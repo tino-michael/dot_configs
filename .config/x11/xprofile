@@ -7,19 +7,18 @@ picom --vsync -b
 
 # UDisks front-end for automounting removable media.
 udiskie -ans &
+
 # music player daemon
 mpd
+cantata &
 
 # unclutter hides the mouse curser after timeout
 unclutter --timeout 7 --ignore-scrolling -b
 
+# web browser
 {
     sleep 1
-    # Launch web browser
     ${BROWSER} &
-
-    # Launch music player
-    cantata &
 } &
 
 # polybar

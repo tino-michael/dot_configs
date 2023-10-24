@@ -4,7 +4,6 @@
 PATH=$PATH:$HOME/.local/bin/x11
 
 # if external monitor is connected, set as main and switch off internal one
-[[ monitors ]] && usb only
 
 # switch off screen blanking
 xset dpms 0 0 0
