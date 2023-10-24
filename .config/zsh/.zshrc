@@ -150,3 +150,5 @@ for F in \
 do
     [ -f "$F" ] && source "$F"
 done
+
+eval "$(starship init zsh)"

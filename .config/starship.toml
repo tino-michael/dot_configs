@@ -1,0 +1,45 @@
+add_newline = false
+
+format = """$directory$character"""
+right_format = """$git_branch$git_commit $git_status $git_metrics $git_state$python$conda $time"""
+
+[directory]
+truncation_length = 8
+truncation_symbol = '…/'
+
+
+[time]
+disabled = false
+format = '[$time]($style)'
+time_format = '%T'
+
+[git_branch]
+disabled = false
+symbol = ''
+format = '[$symbol$branch(:$remote_branch)]($style)'
+ignore_branches = ['master', 'main']
+
+[git_commit]
+disabled = false
+only_detached = true
+format = '[\($hash$tag\)]($style)'
+
+[git_metrics]
+disabled = false
+format = '([+$added]($added_style))([-$deleted]($deleted_style))'
+
+[git_state]
+disabled = false
+
+[git_status]
+disabled = false
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[python]
+disabled = false
+symbol = '🐍 '
+# format = [${symbol}(${version}) ]($style)'
+
+[conda]
+disabled = false
+format = '[$environment]($style)'
