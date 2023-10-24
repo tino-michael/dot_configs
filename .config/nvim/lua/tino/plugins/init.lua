@@ -1,4 +1,14 @@
 return {
+    -- toggle line comments
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            toggler = {
+                line = 'gcc',
+            }
+        },
+        lazy = false,
+    },
 
     {
         'stevearc/dressing.nvim',
