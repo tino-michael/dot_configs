@@ -1,5 +1,5 @@
 configuration {
-	modi: "combi,ssh,window";
+	modi: "combi,window";
 	eh: 2;
 	font: "Noto Sans 15";
 	show-icons: true;

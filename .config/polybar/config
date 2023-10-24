@@ -17,10 +17,10 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = Libertine:size=12;3
+font-1 = Material Design Icons:size=12;5
 font-2 = Font Awesome 6 Brands,Font Awesome 6 Brands Regular:style=Regular:size=12;3
 font-3 = Font Awesome 6 Free,Font Awesome 6 Free Regular:style=Regular:size=12;3
 font-4 = Font Awesome 6 Free,Font Awesome 6 Free Solid:style=Solid:size=12;3
-font-1 = Material Design Icons:size=12;5
 font-5 = cryptofont:Style=Regular:size=11;3
 
 
@@ -81,8 +81,8 @@ icon-stop = 󰓛
 icon-prev = 󰒮
 icon-next = 󰒭
 icon-random = 󰒟
-icon-repeat = 󰑖
-icon-consume = ✀
+icon-repeat = 󰕇
+icon-consume = 
 
 label-offline = mpd offline
 
