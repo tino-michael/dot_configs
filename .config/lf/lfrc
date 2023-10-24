@@ -1,5 +1,8 @@
-set previewer ~/.local/bin/lfimg/preview
-set cleaner ~/.local/bin/lfimg/cleaner
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
 set shell zsh
 set shellopts '-euy'
 set ifs "\n"

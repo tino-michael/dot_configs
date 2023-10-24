@@ -27,17 +27,16 @@ alias e='$EDITOR'
 
 # lf-wrapper to change dir on exit
 # (Taken from Luke Smith: https://github.com/LukeSmithxyz)
-lfcd ()
+lf ()
 {
     tmp="$(mktemp)"
-    lfrun -last-dir-path="$tmp" "$@"
+    /usr/bin/lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
-alias lf='lfcd'
 
 
 
