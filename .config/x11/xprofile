@@ -45,11 +45,7 @@ unclutter --timeout 7 --ignore-scrolling -b
 # KDE Connect
 {
     sleep 2
-    /usr/lib/kdeconnectd &
-    kdeconnect-indicator &
-    sleep 10
-    kdeconnect-cli --refresh
-    kdeconnect-cli -l
+    kdeconnect-startup &
 } &
 
 # start background slideshow
