@@ -1,4 +1,4 @@
-#include "colour_schemes/my_scheme"
+#include "colour_schemes/catppuccin-mocha"
 
 *.foreground:   FOREGROUND
 *.background:   BACKGROUND

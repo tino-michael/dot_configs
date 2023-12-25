@@ -4,4 +4,5 @@ return {
     -- color scheme
     {'dracula/vim', as = 'dracula'},
     {'rose-pine/neovim', as = 'rose-pine'},
+    {'catppuccin/vim', as = 'catppuccin'},
 }

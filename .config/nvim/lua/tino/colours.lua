@@ -1,5 +1,5 @@
 function MyColors(color)
-    color = color or "dracula"
+    color = color or "catppuccin_mocha"
 	vim.cmd.colorscheme(color)
 
     -- sets the vertical ruler to the red of the terminal scheme

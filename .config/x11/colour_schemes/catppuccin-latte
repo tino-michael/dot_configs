@@ -1,0 +1,34 @@
+#define BACKGROUND #EFF1F5
+#define FOREGROUND #4C4F69
+
+! BLACK
+#define COLOR0 #5C5F77
+#define COLOR8 #6C6F85
+
+! RED
+#define COLOR1 #D20F39
+#define COLOR9 #D20F39
+
+! GREEN
+#define COLOR2 #40A02B
+#define COLOR10 #40A02B
+
+! YELLOW
+#define COLOR3 #DF8E1D
+#define COLOR11 #DF8E1D
+
+! BLUE
+#define COLOR4 #1E66F5
+#define COLOR12 #1E66F5
+
+! MAGENTA
+#define COLOR5 #EA76CB
+#define COLOR13 #EA76CB
+
+! CYAN
+#define COLOR6 #179299
+#define COLOR14 #179299
+
+! WHITE
+#define COLOR7 #ACB0BE
+#define COLOR15 #BCC0CC
