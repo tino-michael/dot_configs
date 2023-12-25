@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # use rofi as a calculator and unit converter
-rofi -show calc -modi calc -location 3 -theme-str '#window {width: 25%;} #listview {lines: 1;}'
+rofi -show calc -modi calc -theme-str '#window {width: 25%;} #listview {lines: 1;}'
