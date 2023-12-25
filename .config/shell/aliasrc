@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # exa as ls drop-in replacement
-alias ls='eza -lh --group-directories-first --git --time-style=long-iso --icons'
-alias la='eza -lah --group-directories-first --git --time-style=long-iso --icons'
-alias lg='eza -lahg --group-directories-first --git --time-style=long-iso --icons'
+alias ls='eza -lh --group-directories-first --git --time-style=long-iso --icons always'
+alias la='eza -lah --group-directories-first --git --time-style=long-iso --icons always'
+alias lg='eza -lahg --group-directories-first --git --time-style=long-iso --icons always'
 
 alias top='btop'
 alias grep='grep --color=auto'
