@@ -48,12 +48,4 @@ unclutter --timeout 7 --ignore-scrolling -b
 } &
 
 # start background slideshow
-{
-    while true;
-    do
-        setbg
-        sleep 600
-    done
-} &
-
 loop_bg &
