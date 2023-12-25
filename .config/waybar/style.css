@@ -1,14 +1,16 @@
+@import "./themes/mocha.css";
+
+* { color: @text; }
+
+
 window#waybar {
-    font-family:  "Material Design Icons", "Liberation Sans", "Font Awesome 5 Free Solid";
+    font-family: "Material Design Icons", "Liberation Sans", "Font Awesome 5 Free Solid";
     font-size: 16px;
 
-    background-color: #1a1a1a;
-    /*
-        background-color: rgba(43, 48, 59, 0.5);
-        border-bottom: 0px solid rgba(100, 114, 125, 0.5);
-    */
+    color: @text;
+    background-color: @base;
+
     border-bottom: none;
-    color: #bbbbbb;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -17,14 +19,6 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #bbbbbb;
-}
-*/
 
 window#waybar.termite {
     background-color: #3F3F3F;
@@ -91,7 +85,8 @@ button:hover {
 #scratchpad,
 #mpd {
     padding: 0 10px;
-    color: #bbbbbb;
+    color: @text;
+    background-color: transparent;
 }
 
 #window,
@@ -109,28 +104,27 @@ button:hover {
     margin-right: 0;
 }
 
-#clock {
-    background-color: transparent;
-}
-
-/* if battery is almost full, make it transparent
- * this is the default, overwrite with lower-charge "state" rules
- */
-#battery {
-    color: rgba(200,200,200,.25);
-    background-color: #1a1a1a;
-}
 
 #battery.charging, #battery.plugged {
-    background-color: #1a1a1a;
+    color: @surface1;
 }
 
 #battery.good {
-    color: #bbbbbb;
+    color: @text;
 }
 
 #battery.warning {
-    color: orange;
+    color: @peach;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @base;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 @keyframes blink {
@@ -140,33 +134,9 @@ button:hover {
     }
 }
 
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #bbbbbb;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
 label:focus {
     background-color: #000000;
 }
-
-#cpu {
-    background-color: #1a1a1a;
-}
-
-#memory {
-    background-color: #1a1a1a;
-}
-
-#disk {
-    background-color: #1a1a1a;
-}
-
-#backlight { }
 
 #network {
     background-color: #1a1a1a;
@@ -176,18 +146,8 @@ label:focus {
     background-color: #f53c3c;
 }
 
-#pulseaudio {
-    background-color: #1a1a1a;
-}
-
 #pulseaudio.muted {
-    background-color: #90b1b1;
     color: #2a5c45;
-}
-
-#wireplumber {
-    /* background-color: #fff0f5; */
-    /* color: #000000; */
 }
 
 #wireplumber.muted {
@@ -216,7 +176,7 @@ label:focus {
 }
 
 #tray {
-    background-color: #1a1a1a;
+    background-color: @base;
 }
 
 #tray > .passive {

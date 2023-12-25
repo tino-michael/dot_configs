@@ -37,8 +37,8 @@ format = '([\[$all_status$ahead_behind\]]($style))'
 
 [python]
 disabled = false
-symbol = '🐍 '
-# format = [${symbol}(${version}) ]($style)'
+symbol = '🐍'
+format = '[${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 
 [conda]
 disabled = false
