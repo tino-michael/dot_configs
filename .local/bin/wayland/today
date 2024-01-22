@@ -1,0 +1,13 @@
+#!/bin/sh
+
+today=$(date -I)
+
+[ -z "$@" ] || [ "$@" = "copy" ] &&
+    wl-copy $today
+
+[ -z "$@" ] || [ "$@" = "put" ] &&
+    {
+        # broken! kills wayland?!
+        # wtype $today
+        notify-send $today "putting broken"
+    }
