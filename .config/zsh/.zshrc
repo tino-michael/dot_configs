@@ -120,7 +120,7 @@ fi
 if [[ $(xset -q 2&> /dev/null) && $EUID -ne 0 ]]
 then
     source ~/software/miniconda3/etc/profile.d/conda.sh
-    conda activate py310
+    conda activate py311
 fi
 
 # Window title
