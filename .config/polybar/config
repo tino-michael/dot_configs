@@ -73,7 +73,7 @@ click-right = $EMAIL
 type = internal/mpd
 format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
 
-port=6601
+port=6600
 
 icon-play = 󰐊
 icon-pause = 󰏤
