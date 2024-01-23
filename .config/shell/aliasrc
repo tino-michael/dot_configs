@@ -9,6 +9,8 @@ alias top='btop'
 alias grep='grep --color=auto'
 alias feh='feh --scale-down'
 
+alias pw='pwgen -y 16'
+
 alias ping='ping -c 5'
 alias fastping='ping -c 5 -s.2'
 
