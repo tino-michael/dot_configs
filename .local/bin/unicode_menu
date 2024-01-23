@@ -19,5 +19,5 @@ chosen=$(cat $SOURCE | cut -d ';' -f1 | \
 # Exit if none chosen.
 [ -z "$chosen" ] && exit
 
-echo "$chosen" | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
+printf "$chosen" | awk '{print $1}' | tr -d '\n' | wl-copy
 notify-send "'$chosen' copied to clipboard." &
