@@ -93,6 +93,7 @@ cmd on-cd &{{
 on-cd
 
 
+map e open
 map D delete
 map <f-2> rename
 map <f-10> push :mkdir<space>
