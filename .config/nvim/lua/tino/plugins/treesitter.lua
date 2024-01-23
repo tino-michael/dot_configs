@@ -7,7 +7,7 @@ return {
             -- A list of parser names, or "all"
             ensure_installed = {
                 "help", "c", "cpp", "cmake", "css", "dockerfile", "gitignore", "html", "json", "latex",
-                "make", "python", "bash", "lua", "rust"
+                "make", "python", "bash", "lua", "rust", "sql", "markdown"
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
