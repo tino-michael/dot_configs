@@ -45,16 +45,6 @@ autocmd(
     }
 )
 
--- generate config files when their template changed
-autocmd(
-    { "BufWritePost" },
-    {
-        pattern = { "*/alacritty.yml.in", "*/dunstrc.in" },
-        command = [[ !generate_xresource_configs ]],
-        group = grp
-    }
-)
-
 -- reread xresources when config is updated
 autocmd(
     { "BufWritePost" },
