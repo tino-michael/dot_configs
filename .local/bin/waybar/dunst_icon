@@ -1,0 +1,9 @@
+#!/bin/sh
+
+print_icon ()
+{
+    [ "$(dunstctl is-paused)" = "true" ] &&
+        echo  || echo ""
+}
+
+print_icon

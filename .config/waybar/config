@@ -8,7 +8,7 @@
 
         "modules-left": ["hyprland/window"],
         "modules-center": ["mpd"],
-        "modules-right": ["backlight", "pulseaudio", "tray"],
+        "modules-right": ["backlight", "pulseaudio",  "custom/dunst", "tray"],
     },
     {
         "layer": "top",

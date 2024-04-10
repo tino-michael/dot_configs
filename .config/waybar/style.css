@@ -47,7 +47,7 @@ button:hover {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #bbbbbb;
+    color: @text;
 }
 
 #workspaces button:hover {
@@ -55,17 +55,17 @@ button:hover {
 }
 
 #workspaces button.active {
-    background-color: #1a1a1a;
-    box-shadow: inset 0 -3px #bbbbbb;
+    background-color: @mantle;
+    box-shadow: inset 0 -3px @text;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: shade(@red, 0.5);
 }
 
 #mode {
     background-color: #64727D;
-    border-bottom: 3px solid #bbbbbb;
+    border-bottom: 3px solid @text;
 }
 
 #clock,
@@ -172,7 +172,7 @@ label:focus {
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: @red;
 }
 
 #tray {
@@ -185,7 +185,7 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: @red;
 }
 
 #idle_inhibitor {
@@ -201,7 +201,7 @@ label:focus {
 }
 
 #mpd.disconnected {
-    background-color: #f53c3c;
+    background-color: @red;
 }
 
 #mpd.stopped {

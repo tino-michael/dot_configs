@@ -1,4 +1,3 @@
 #!/bin/sh
 
 dunstctl set-paused toggle
-killall -10 dunst_icon
