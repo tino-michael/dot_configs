@@ -5,11 +5,9 @@
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | grep -Ev "(x11)|(wayland)" | paste -sd ':' -)"
 
 
-export TERMINAL="alacritty"
+export TERMINAL="kitty"
 export EDITOR="nvim"
 export BROWSER="brave"
-# lfrun: lf-wrapper script to enable preview of images and pdfs
-export FILE="lfrun"
 # open a new terminal and run lf in it
 export FILE_CMD="$TERMINAL -e $FILE"
 
@@ -23,6 +21,7 @@ export XDG_DATA_DIRS=/usr/share:${XDG_DATA_HOME}
 export WALLPAPER=${XDG_DATA_HOME}/wallpaper
 
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc-2.0"
+export GTK_DATA_PREFIX="${XDG_CONFIG_HOME}/gtk-3.0"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export ZHISTDIR="${XDG_CACHE_HOME}/zsh"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
@@ -39,7 +38,7 @@ export PYTHONIOENCODING=UTF-8
 export HISTCONTROL=ignoredups
 
 # local folder to look up latex packages
-export TEXMFHOME=${XDG_DATA_HOME}/texfm/
+export TEXMFHOME=${XDG_DATA_HOME}/texmf/
 
 # This is the list for lf icons:
 # taken from the lf wiki and modified by myself

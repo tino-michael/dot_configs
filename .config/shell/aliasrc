@@ -26,6 +26,7 @@ alias emacs='emacs -nw'
 alias vi='nvim'
 alias vim='nvim'
 alias e='$EDITOR'
+alias t='tmux'
 
 # lf-wrapper to change dir on exit
 # (Taken from Luke Smith: https://github.com/LukeSmithxyz)
@@ -55,12 +56,13 @@ alias him='GIT_DIR=$HOME/.local/repos/dot_configs GIT_WORK_TREE=$HOME nvim'
 
 # edit configs quickly
 alias vimrc='cd ~/.config/nvim/ && he && cd -'
-alias zshrc='he ~/.config/zsh/.zshrc'
-alias aliasrc='he ~/.config/shell/aliasrc'
-alias autostart='he ~/.config/x11/xprofile'
+alias zshrc='cd ~/.config/zsh/ && he .zshrc && cd -'
+alias aliasrc='cd ~/.config/shell/ && he aliasrc && cd -'
+alias autostart='cd ~/.config/hypr/ && he autostart.conf && cd -'
+alias keybinds='cd ~/.config/hypr/ && he keybinds.conf && cd -'
 
 
-alias unlock_pacman='rm /var/lib/pacman/db.lck'
+alias unlock_pacman='sudo rm /var/lib/pacman/db.lck'
 
 alias notebook='jupyter notebook'
 
@@ -71,9 +73,9 @@ mcd() {[ -n "$1" ] && mkdir -p $@ && cd $1}
 
 lower_case ()
 {
-  find . -name '*.*' -exec sh -c '
-  a=$(echo "$0" | sed -r "s/([^.]*)\$/\L\1/");
-  [ "$a" != "$0" ] && mv "$0" "$a" ' {} \;
+    find . -name '*.*' -exec sh -c '
+    a=$(echo "$0" | sed -r "s/([^.]*)\$/\L\1/");
+    [ "$a" != "$0" ] && mv "$0" "$a" ' {} \;
 }
 alias photo_rename='exiftool -ext jpg -ext jpeg -ext nef -d %Y-%m-%d_%H-%M-%S%%-c.%%e "-filename<CreateDate" "-filename<datetimeoriginal" * && lower_case'
 
