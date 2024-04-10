@@ -1,24 +1,6 @@
 [global]
-    # Allow a small subset of html markup:
-    #   <b>bold</b>
-    #   <i>italic</i>
-    #   <s>strikethrough</s>
-    #   <u>underline</u>
-    #
-    # For a complete reference see
-    # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
-    # If markup is not allowed, those tags will be stripped out of the
-    # message.
     markup = yes
 
-    # The format of the message.  Possible variables are:
-    #   %a  appname
-    #   %s  summary
-    #   %b  body
-    #   %i  iconname (including its path)
-    #   %I  iconname (without its path)
-    #   %p  progress value if set ([  0%] to [100%]) or nothing
-    # Markup is allowed
     format = "<span font='16'>%s</span>\n<span font='12'>%b</span>\n<span font='10'>\n%a</span>"
     font = sans-serif 12
 
@@ -53,6 +35,8 @@
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     idle_threshold = 600
+
+    timeout = 10
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
@@ -106,23 +90,27 @@
 
     mouse_middle_click = do_action
 
+
+    frame_color = "#8AADF4"
+    separator_color= frame
+
+
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    # %cl0%  %clbg%
-    background = "%clbg%"
-    foreground = "%cl7%"
-    frame_color = "%cl8%"
-    timeout = 4
+    background = "#24273A99"
+    foreground = "#CAD3F5AA"
+    frame_color = "#8AADF477"
 
 [urgency_normal]
-    background = "%clbg%"
-    foreground = "%clfg%"
-    frame_color = "%cl8%"
-    timeout = 7
+    background = "#24273ACC"
+    foreground = "#CAD3F5FF"
+    frame_color = "#8AADF4CC"
 
 [urgency_critical]
-    background = "%cl1%"
-    foreground = "%clfg%"
-    frame_color = "%cl9%"
-    timeout = 10
+    background = "#24273A"
+    foreground = "#CAD3F5"
+    frame_color = "#F5A97F"
+
+
+[brave]
+    appname = Brave
+    background = #FF0000
