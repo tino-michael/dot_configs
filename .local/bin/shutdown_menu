@@ -26,18 +26,14 @@ ask_action ()
         dmenu -i -p "action" -theme-str '#window {width: 250px;} #listview {lines: 3;}'
 }
 
-screen_lock ()
-{
-    lock_screen
-}
-
 
 pick_action ()
 {
     case "$@" in
         shutdown) shutdown_safe  ;;
         reboot) reboot_safe ;;
-        "lock screen") screen_lock ;;
+        "lock screen") lock_screen ;;
+        kill_all) pkill_15_all ;;
     esac
 }
 
