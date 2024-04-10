@@ -2,7 +2,6 @@ return {
     -- File browsing panel
     'nvim-tree/nvim-tree.lua',
 
-    enabled = false,
 
     dependencies = {
         "nvim-tree/nvim-web-devicons",
@@ -28,19 +27,32 @@ return {
         sort_by = "case_sensitive",
         view = {
             adaptive_size = false,
+            width = 35,
             number = true,
             relativenumber = true,
         },
+        filesystem_watchers = {
+            enable = true
+        },
         renderer = {
             group_empty = true,
-            icons={
+            icons = {
                 glyphs = {
                     folder = {
                         arrow_closed = "⏵",
                         arrow_open = "⏷",
-                    }
-                }
-            }
+                    },
+                    git = {
+                        unstaged = "✗",
+                        staged = "✓",
+                        unmerged = "",
+                        renamed = "➜",
+                        untracked = "★",
+                        deleted = "",
+                        ignored = "◌",
+                    },
+                },
+            },
         },
         filters = {
             custom = {
