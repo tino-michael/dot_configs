@@ -30,7 +30,7 @@ vim.keymap.set("i", "<C-p>", [[<esc>"+Pi]])
 -- make current file executable `chmod +x`
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- execute current file (make sure interpreter is set in she-bang)
-vim.keymap.set("n", "<s-x>", [[:!./%<cr>]])
+vim.keymap.set("n", "<s-x>", [[:! %<cr>]])
 
 -- split buffer navigation
 vim.keymap.set("n", "<leader>e", "<C-W><C-L>")
