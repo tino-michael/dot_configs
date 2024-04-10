@@ -11,6 +11,8 @@
     cm = commit -m
     am = commit --amend
     br = branch
+    bd = branch -d
+    bD = branch -D
     rb = rebase
     r = reset
     diff = diff --word-diff
