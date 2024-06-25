@@ -1,0 +1,63 @@
+#!/bin/bash
+
+
+get_filename()
+{
+    printf $HOME/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S")'.png'
+}
+
+
+region()
+{
+    grim -g "$(slurp)" ${filename}
+    notify-send "Screenshot saved" "${filename}"
+}
+
+active_window()
+{
+    notify-send implement "active_window"
+}
+
+fullscreen()
+{
+    notify-send implement "fullscreen"
+}
+
+show=(region active_window fullscreen)
+
+
+declare -A labels
+labels[region]="pick Region"
+labels[active_window]="active Window"
+labels[fullscreen]="Fullscreen"
+
+
+declare -A actions
+actions[region]=region
+actions[active_window]=active_window
+actions[fullscreen]=fullscreen
+
+
+pick_action()
+{
+    for entry in "${show[@]}"
+    do
+        echo ${labels[$entry]}
+    done | dmenu -l ${#show[@]} -theme-str 'window {width: 250px;} inputbar {enabled: false;}'
+}
+
+
+perform_action()
+{
+    filename=$(get_filename)
+
+    for entry in "${show[@]}"
+    do
+        if [[ "$1" == "${labels[$entry]}" ]]
+        then
+            eval ${actions[$entry]}
+        fi
+    done
+}
+
+perform_action "$(pick_action)"
