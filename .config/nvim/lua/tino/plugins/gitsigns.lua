@@ -33,7 +33,12 @@ return {
             end, {expr=true})
 
             map('n', '<leader>gd', gs.toggle_deleted)
+            map('n', '<leader>gf', gs.stage_buffer)
+            map('n', '<leader>ga', gs.stage_hunk)
+            map('n', '<leader>gu', gs.undo_stage_hunk)
+            map('n', '<leader>rh', gs.reset_hunk)
 
+            map('v', '<leader>ga', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
         end
     }
 }
