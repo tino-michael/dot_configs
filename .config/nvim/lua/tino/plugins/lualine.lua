@@ -4,7 +4,8 @@ return {
         options = {
             theme = 'auto',
             component_separators = { left = '|', right = '|'},
-            -- section_separators = { left = u'\uE0B4', right = u'\uE0B6'},
+            section_separators = { left = '', right = '' },
+            ignore_focus = {"NvimTree"},
         }
     }
 }

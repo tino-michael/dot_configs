@@ -1,6 +1,9 @@
 -- go to last active buffer
 vim.keymap.set("n", "<c-x>", "<c-6>")
 
+-- space in non-edit mode doesn't advance cursor
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
 -- move lines up / down
 vim.keymap.set("n", "<S-A-r>", ":m .+1<CR>==")
 vim.keymap.set("n", "<S-A-n>", ":m .-2<CR>==")
