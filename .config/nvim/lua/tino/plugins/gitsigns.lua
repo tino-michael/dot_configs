@@ -37,7 +37,9 @@ return {
             map('n', '<leader>ga', gs.stage_hunk)
             map('n', '<leader>gu', gs.undo_stage_hunk)
             map('n', '<leader>rh', gs.reset_hunk)
-
+            map('n', '<leader>gb', gs.blame)
+            map('n', '<leader>gtb', gs.toggle_current_line_blame)
+            map('n', '<leader>glb', function() gs.blame_line{full=true} end)
             map('v', '<leader>ga', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
         end
     }
