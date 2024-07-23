@@ -109,8 +109,3 @@
     background = "#24273A"
     foreground = "#CAD3F5"
     frame_color = "#F5A97F"
-
-
-[brave]
-    appname = Brave
-    background = #FF0000
