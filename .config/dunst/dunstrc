@@ -22,7 +22,7 @@
     origin = top-right
     width = 450
     height = 350
-    offset = 5x35
+    offset = 5x5
 
     # Shrink window if it's smaller than the width.
     shrink = no
@@ -36,7 +36,7 @@
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     idle_threshold = 600
 
-    timeout = 10
+    timeout = 8
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
