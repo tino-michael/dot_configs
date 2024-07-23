@@ -25,6 +25,27 @@ return {
                 inc_rename = false, -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = false, -- add a border to hover docs and signature help
             },
+
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = "written",
+                    },
+                    opts = { skip = true },
+                },
+                {
+                    filter = {
+                        find = "INSERT",
+                    },
+                    opts = { skip = true },
+                },
+                {
+                    view = "notify",
+                    filter = { event = "msg_showmode" },
+                },
+            },
         })
     end,
 
@@ -36,17 +57,6 @@ return {
         {
             "<leader><leader>l", function() require("noice").cmd("last") end,
                 mode = { "n" }, {noremap=true}
-        },
-    },
-
-    routes = {
-        {
-            filter = {
-                event = "msg_show",
-                kind = "",
-                find = "written",
-            },
-            opts = { skip = true },
         },
     },
 }
