@@ -1,5 +1,5 @@
 -- go to last active buffer
-vim.keymap.set("n", "<c-x>", "<c-6>")
+vim.keymap.set("n", "<c-q>", "<c-6>")
 
 -- space in non-edit mode doesn't advance cursor
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -36,6 +36,10 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<s-x>", [[:! %<cr>]])
 
 -- split buffer navigation
+vim.keymap.set("n", "<A-d>", "<C-W><C-L>")
+vim.keymap.set("n", "<A-n>", "<C-W><C-H>")
+vim.keymap.set("n", "<A-t>", "<C-W><C-J>")
+vim.keymap.set("n", "<A-r>", "<C-W><C-K>")
 vim.keymap.set("n", "<leader>e", "<C-W><C-L>")
 vim.keymap.set("n", "<leader>i", "<C-W><C-H>")
 vim.keymap.set("n", "<leader>a", "<C-W><C-J>")
@@ -47,6 +51,7 @@ vim.keymap.set("n", "<leader>f", "<C-W>=")
 -- indent with tab in normal mode
 vim.keymap.set("n", "<tab>", ">>")
 vim.keymap.set("n", "<s-tab>", "<<")
+-- indent in visual mode keeps visual selection
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
