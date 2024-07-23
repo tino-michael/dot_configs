@@ -16,8 +16,10 @@ return {
     },
 
     -- Insert or delete brackets, parens, quotes in pair.
-    {'jiangmiao/auto-pairs', config=function()
-            vim.g.AutoPairsMultilineClose=0
+    {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    },
         end
     },
 
