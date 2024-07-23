@@ -10,17 +10,18 @@ get_filename()
 region()
 {
     grim -g "$(slurp)" ${filename}
-    notify-send "Screenshot saved" "${filename}"
 }
 
 active_window()
 {
-    notify-send implement "active_window"
+    # cheekily copied from https://github.com/equk/dotfiles/blob/master/configs/bin/screenactive
+    hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' |
+        grim -g - ${filename}
 }
 
 fullscreen()
 {
-    notify-send implement "fullscreen"
+    grim -o $(hyprctl -j activeworkspace | jq -r '(.monitor)') ${filename}
 }
 
 show=(region active_window fullscreen)
@@ -44,6 +45,10 @@ pick_action()
     do
         echo ${labels[$entry]}
     done | dmenu -l ${#show[@]} -theme-str 'window {width: 250px;} inputbar {enabled: false;}'
+
+    # sleep for a second to wait for dmenu to fade away
+    # otherwise, it might end up in the screenshot
+    sleep 1
 }
 
 
@@ -56,8 +61,14 @@ perform_action()
         if [[ "$1" == "${labels[$entry]}" ]]
         then
             eval ${actions[$entry]}
+
+            if [ -e ${filename} ]
+            then
+                notify-send "Screenshot saved" "${filename}"
+                wl-copy "${filename}"
+            fi
         fi
     done
 }
 
-perform_action "$(pick_action)"
+perform_action "${1:-$(pick_action)}"

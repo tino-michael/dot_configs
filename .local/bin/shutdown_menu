@@ -1,9 +1,16 @@
 #!/bin/sh
 
+# All supported choices
+all=(shutdown reboot suspend hibernate logout lockscreen killall)
+
+# By default, show all (i.e., just copy the array)
+show=(shutdown reboot lockscreen logout)
+
 pkill_15_all ()
 {
     # safely exit brave so it doesn't complain when restarting
     pkill -15 brave
+    pkill -15 chromium
     sleep 1
 }
 
@@ -20,21 +27,45 @@ reboot_safe ()
     systemctl reboot -i
 }
 
+declare -A labels
+labels[shutdown]="shut down"
+labels[reboot]="reboot"
+labels[suspend]="suspend"
+labels[hibernate]="hibernate"
+labels[logout]="log out"
+labels[lockscreen]="lock screen"
+labels[killall]="kill browsers 🤷"
+
+declare -A actions
+actions[shutdown]=shutdown_safe
+actions[reboot]=reboot_safe
+actions[suspend]=""
+actions[hibernate]=""
+actions[logout]=""
+actions[lockscreen]=lock_screen
+actions[killall]=pkill_15_all
+
+
 ask_action ()
 {
-    printf "shutdown\nreboot\nlock screen" |
-        dmenu -i -p "action" -theme-str '#window {width: 250px;} #listview {lines: 3;}'
+    for entry in "${show[@]}"
+    do
+        echo ${labels[$entry]}
+    done | dmenu -l ${#show[@]} -theme-str 'window {width: 250px;} inputbar {enabled: false;}'
 }
 
 
 pick_action ()
 {
-    case "$@" in
-        shutdown) shutdown_safe  ;;
-        reboot) reboot_safe ;;
-        "lock screen") lock_screen ;;
-        kill_all) pkill_15_all ;;
-    esac
+    for entry in "${all[@]}"
+    do
+        if [[ "$1" == "${labels[$entry]}" || "$1" == "$entry" ]]
+        then
+            eval ${actions[$entry]}
+        fi
+
+        echo
+    done
 }
 
-pick_action ${1:-$(ask_action)}
+pick_action "${1:-$(ask_action)}"
