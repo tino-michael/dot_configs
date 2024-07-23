@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# define "docked" mode by a white-list of present monitors i.e. my home office monitor
+is_docked=$(hyprctl monitors all -j | jq '[ .[] | select(
+    .model == "BenQ EX3501R"
+    # or
+    # .model == "add more monitors like this"
+    )] | length'
+)
+
+# define being in the office by detecting two of the monitors we use there
+is_office=$(hyprctl monitors all -j | jq '[ .[] | select(
+    .model == "EV2450")] | length == 2'
+)
+
+
+set_docked()
+{
+    hyprctl --batch "\
+      monitor=,preferred,auto,1;\
+      keyword monitor eDP-1,disabled;\
+    "
+}
+
+set_office()
+{
+    hyprctl --batch "\
+        keyword monitor DP-3,preferred,0x0,1;\
+        keyword monitor DP-4,preferred,1920x0,1;\
+        keyword monitor DP-5,preferred,0x0,1;\
+        keyword monitor DP-6,preferred,1920x0,1;\
+        keyword monitor DP-7,preferred,0x0,1;\
+        keyword monitor eDP-1,preferred,960x1080,1\
+    "
+}
+
+
+if [[ $is_docked -gt 0 ]]
+then
+    echo found benq home office monitor
+    set_docked
+
+elif [[ "${is_office}" == "true" ]]
+then
+    echo found 2 office monitors
+    set_office
+
+fi
