@@ -32,5 +32,10 @@ return {
                 require "todo-comments"
                 vim.cmd.TodoTelescope()
             end, mode="n"},
+
+        {'<c-s>', function()
+                require("telescope.builtin").spell_suggest(
+                    require("telescope.themes").get_cursor({}))
+        end, mode="n"},
     }
 }
