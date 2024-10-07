@@ -48,8 +48,6 @@ vim.opt.ignorecase = true
 -- turn on smartcase
 vim.opt.smartcase = true
 
-vim.opt.termguicolors = true
-
 -- keep that many rows to screen bottom/top while scrolling
 vim.opt.scrolloff = 8
 -- forces diagnostics gutter to stay open

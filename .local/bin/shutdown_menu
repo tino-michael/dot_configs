@@ -3,8 +3,8 @@
 # All supported choices
 all=(shutdown reboot suspend hibernate logout lockscreen killall)
 
-# By default, show all (i.e., just copy the array)
-show=(shutdown reboot lockscreen logout)
+# The choices presented in the menu
+show=(shutdown lockscreen logout reboot)
 
 pkill_15_all ()
 {

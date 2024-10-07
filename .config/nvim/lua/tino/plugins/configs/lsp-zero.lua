@@ -1,6 +1,5 @@
 local lsp = require 'lsp-zero'
 local lspconfig = require 'lspconfig'
-local cmp = require 'cmp'
 
 local mason = require 'mason'
 local mason_lsp = require 'mason-lspconfig'
@@ -71,3 +70,22 @@ mason_lsp.setup_handlers({
         }
     end,
 })
+
+
+require('lspconfig').lua_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file('', true),
+                checkThirdParty = false,
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = { enable = false },
+        },
+    },
+}

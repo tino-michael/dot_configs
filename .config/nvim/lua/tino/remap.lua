@@ -5,12 +5,12 @@ vim.keymap.set("n", "<c-q>", "<c-6>")
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- move lines up / down
-vim.keymap.set("n", "<S-A-r>", ":m .+1<CR>==")
-vim.keymap.set("n", "<S-A-n>", ":m .-2<CR>==")
-vim.keymap.set("i", "<S-A-r>", "<Esc>:m .+1<CR>==gi")
-vim.keymap.set("i", "<S-A-n>", "<Esc>:m .-2<CR>==gi")
-vim.keymap.set("v", "<S-A-r>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<S-A-n>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "<S-A-t>", ":m .+1<CR>==")
+vim.keymap.set("n", "<S-A-r>", ":m .-2<CR>==")
+vim.keymap.set("i", "<S-A-t>", "<Esc>:m .+1<CR>==gi")
+vim.keymap.set("i", "<S-A-r>", "<Esc>:m .-2<CR>==gi")
+vim.keymap.set("v", "<S-A-t>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<S-A-r>", ":m '<-2<CR>gv=gv")
 
 -- append line below to current line without moving cursor
 vim.keymap.set("n", "J", "mzJ`z")
@@ -30,10 +30,14 @@ vim.keymap.set("v", "<C-y>", [["+y]])
 vim.keymap.set({"n", "v"}, "<C-p>", [["+p]])
 vim.keymap.set("i", "<C-p>", [[<esc>"+Pi]])
 
+-- add new lines in normal mode
+vim.keymap.set("n", "<leader>o", [[o<esc>]])
+vim.keymap.set("n", "<leader>O", [[O<esc>]])
+
 -- make current file executable `chmod +x`
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %:p<CR>", { silent = true })
 -- execute current file (make sure interpreter is set in she-bang)
-vim.keymap.set("n", "<s-x>", [[:! %<cr>]])
+vim.keymap.set("n", "<s-x>", [[:!%:p<cr>]])
 
 -- split buffer navigation
 vim.keymap.set("n", "<A-d>", "<C-W><C-L>")

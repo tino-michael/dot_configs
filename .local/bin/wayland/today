@@ -3,7 +3,10 @@
 today=$(date -I)
 
 [ -z "$@" ] || [ "$@" = "copy" ] &&
-    wl-copy $today
+    {
+        wl-copy $today
+        notify-send $today "copied to clipboard"
+    }
 
 [ -z "$@" ] || [ "$@" = "put" ] &&
     {

@@ -27,6 +27,8 @@ alias vi='nvim'
 alias vim='nvim'
 alias e='$EDITOR'
 alias t='tmux'
+alias jqp='jqp --theme catppuccin-mocha'
+alias activate='source .venv/bin/activate'
 
 # lf-wrapper to change dir on exit
 # (Taken from Luke Smith: https://github.com/LukeSmithxyz)

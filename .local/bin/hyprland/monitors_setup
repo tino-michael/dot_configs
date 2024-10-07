@@ -3,8 +3,8 @@
 # define "docked" mode by a white-list of present monitors i.e. my home office monitor
 is_docked=$(hyprctl monitors all -j | jq '[ .[] | select(
     .model == "BenQ EX3501R"
-    # or
-    # .model == "add more monitors like this"
+    or
+    .model == "LG ULTRAGEAR"
     )] | length'
 )
 

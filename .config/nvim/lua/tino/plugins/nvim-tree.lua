@@ -24,7 +24,6 @@ return {
 
     opts = {
         on_attach = on_attach,
-        sort_by = "case_sensitive",
         view = {
             adaptive_size = false,
             width = 35,

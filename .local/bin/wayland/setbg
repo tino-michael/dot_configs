@@ -26,7 +26,7 @@ WALLPAPER=${XDG_DATA_HOME}/wallpaper
 [ -f "$WALLPAPER" ] &&
 {
     PID=$(pgrep swaybg)
-    swaybg -o "*" -i "${WALLPAPER}" &
+    swaybg -m fill -o "*" -i "${WALLPAPER}" &
     sleep 1
     [[ $PID ]] && kill $PID
 }
@@ -35,7 +35,7 @@ WALLPAPER=${XDG_DATA_HOME}/wallpaper
 {
     PID=$(pgrep swaybg)
     WALL=$(shuf -n1 -e ${WALLPAPER}/*)
-    swaybg -o "*" -i "${WALL}" &
+    swaybg -m fill -o "*" -i "${WALL}" &
     sleep 1
     [[ $PID ]] && kill $PID
 }
