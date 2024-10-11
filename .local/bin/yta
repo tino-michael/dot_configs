@@ -23,5 +23,5 @@ BN=$(basename "$FN")
     notify-send yt-dlp "$BN already exists in download dir" ||
     {
         yt-dlp --extract-audio "$TAG" &&
-        [ -e "$FN" ] && notify-send yt-dlp "$BN downloaded"
+        [ -e "$FN" ] && notify-send -a yt-dlp  "clip downloaded" "$BN"
     }
