@@ -9,17 +9,14 @@ return {
 
     keys = {
         -- toggles nvimtree open/closed
-        {"<leader>b", vim.cmd.NvimTreeToggle, mode="n"},
+        {"<leader>bb", vim.cmd.NvimTreeToggle, mode="n"},
 
         -- focuses on nvimtree, opens if necessary
-        {"<leader>m", vim.cmd.NvimTreeFocus, mode="n"},
+        -- {"<leader>bt", vim.cmd.NvimTreeFocus, mode="n"},
 
         -- finds the current file in nvimtree, marking it; opens tree if necessary
-        {"<M-b>", vim.cmd.NvimTreeFindFile, mode="n"},
+        {"<leader>bc", vim.cmd.NvimTreeFindFile, mode="n"},
         -- {"<M-b>", [[: lua require('nvim-tree.api').tree.toggle({ path = vim.api.nvim_buf_get_name(0)})<cr>]], mode="n"},
-
-
-        {"<M-m>", vim.cmd.NvimTreeFocus, mode="n"},
     },
 
     opts = {
