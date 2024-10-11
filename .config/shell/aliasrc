@@ -73,6 +73,8 @@ alias aliasrc='cd ~/.config/shell/ && he aliasrc && cd -'
 alias autostart='cd ~/.config/hypr/ && he autostart.conf && cd -'
 alias keybinds='cd ~/.config/hypr/ && he keybinds.conf && cd -'
 
+alias stocks='cd /data/Notes/Finance/Stocks/ && e && cd -'
+alias notes='cd /data/Notes/ && e && cd -'
 
 alias unlock_pacman='sudo rm /var/lib/pacman/db.lck'
 
