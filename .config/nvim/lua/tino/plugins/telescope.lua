@@ -8,9 +8,9 @@ return {
                 require('telescope.builtin').find_files()
             end, mode="n"},
 
-        {'<leader>z', function()
-                require('telescope.builtin').buffers()
-            end, mode="n"},
+        -- {'<leader>z', function()
+        --         require('telescope.builtin').buffers()
+        --     end, mode="n"},
 
         {'<leader>ä', function()
                 require('telescope.builtin').live_grep({})
