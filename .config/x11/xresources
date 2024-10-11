@@ -37,11 +37,6 @@
 *.color15:      COLOR15
 
 
-! cursors
-Xcursor.theme: Vimix-white-cursors
-Xcursor.size: 16
-
-
 ! dwm settings
 dwm.normbgcolor:        BACKGROUND
 dwm.normfgcolor:        COLOR15
